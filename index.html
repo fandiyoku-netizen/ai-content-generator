@@ -84,7 +84,7 @@
 
       output.innerHTML = "<span class='loading'>Generating...</span>";
 
-      const res = await fetch("/generate", {
+      const res = await fetch("/api/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
