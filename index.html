@@ -1,111 +1,318 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AI Content Generator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FANDY | AI Marketing Command Center</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
+    :root {
+      --bg-dark: #050505;
+      --card-bg: #0d0d0d;
+      --neon-cyan: #00f2ff;
+      --neon-purple: #bc13fe;
+      --terminal-green: #33ff33;
+      --text-gray: #888;
+    }
+
     body {
-      font-family: Arial;
-      background: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .container {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      width: 400px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    textarea, select, button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      background: black;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-dark);
       color: white;
-      cursor: pointer;
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    button:hover {
-      background: #333;
+    /* SIDEBAR & PROFILE */
+    .sidebar {
+      width: 280px;
+      background: var(--card-bg);
+      border-right: 1px solid #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
     }
 
-    .output {
+    .profile-box {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #222;
+      margin-bottom: 20px;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid var(--neon-cyan);
+      box-shadow: 0 0 15px var(--neon-cyan);
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .profile-name {
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: white;
+    }
+
+    .profile-title {
+      font-size: 11px;
+      color: var(--neon-cyan);
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    .nav-links {
+      flex: 1;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      color: var(--text-gray);
+      text-decoration: none;
+      font-size: 13px;
+      border-radius: 5px;
+      transition: 0.3s;
+      margin-bottom: 5px;
+    }
+
+    .nav-item i { margin-right: 15px; width: 20px; text-align: center; }
+    .nav-item:hover, .nav-item.active {
+      background: rgba(0, 242, 255, 0.1);
+      color: var(--neon-cyan);
+    }
+
+    /* MAIN PANEL */
+    .main-panel {
+      flex: 1;
+      padding: 25px;
+      overflow-y: auto;
+      background: linear-gradient(135deg, #050505 0%, #0a0a0a 100%);
+    }
+
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .system-log {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: var(--terminal-green);
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+
+    .cyber-card {
+      background: rgba(13, 13, 13, 0.8);
+      border: 1px solid #222;
+      border-radius: 10px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .cyber-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 10px; height: 10px;
+      border-top: 2px solid var(--neon-cyan);
+      border-left: 2px solid var(--neon-cyan);
+    }
+
+    .bio-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    .tools-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
       margin-top: 15px;
-      background: #f0f0f0;
+    }
+
+    .tool-icon {
+      font-size: 20px;
+      color: var(--text-gray);
+      transition: 0.3s;
+    }
+    .tool-icon:hover { color: var(--neon-cyan); transform: scale(1.2); }
+
+    .repo-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .repo-item {
+      background: #151515;
+      margin-bottom: 10px;
       padding: 10px;
       border-radius: 5px;
-      min-height: 50px;
+      border-left: 3px solid var(--neon-purple);
+      transition: 0.3s;
     }
 
-    .loading {
-      color: gray;
-      font-style: italic;
+    .repo-item:hover { background: #222; transform: translateX(5px); }
+    .repo-item a {
+      color: white;
+      text-decoration: none;
+      font-size: 12px;
+      display: block;
     }
 
-    .copy-btn {
-      margin-top: 5px;
-      background: #007bff;
+    textarea {
+      width: 100%;
+      background: #000;
+      border: 1px solid #333;
+      color: var(--neon-cyan);
+      padding: 12px;
+      border-radius: 5px;
+      font-family: 'Courier New', monospace;
+      margin-top: 10px;
+      box-sizing: border-box;
+    }
+
+    .btn-execute {
+      width: 100%;
+      background: var(--neon-cyan);
+      color: black;
+      border: none;
+      padding: 12px;
+      margin-top: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .output-box {
+      margin-top: 15px;
+      background: #000;
+      border: 1px dashed var(--neon-cyan);
+      padding: 15px;
+      min-height: 80px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <div style="text-align: center; margin-bottom: 20px;">
-      <button onclick="window.location.href='/quality-report.html'" style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">
-        📊 Quality Report
-      </button>
+
+  <div class="sidebar">
+    <div class="profile-box">
+      <img src="public/fandy cyber.png" alt="Fandy Yoku" class="profile-img">
+      <div class="profile-name">FANDY YOKU</div>
+      <div class="profile-title">Technical Marketing Engineer</div>
     </div>
-    
-    <h2>🔥 AI Content Generator</h2>
 
-    <textarea id="input" placeholder="Tulis ide kamu..."></textarea>
+    <div class="nav-links">
+      <a href="#" class="nav-item active"><i class="fas fa-terminal"></i> Command Center</a>
+      <a href="https://github.com/fandiyoku-netizen" target="_blank" class="nav-item"><i class="fab fa-github"></i> GitHub Profile</a>
+      <a href="https://www.linkedin.com/in/fandy-yoku-a0264a176/" target="_blank" class="nav-item"><i class="fab fa-linkedin"></i> LinkedIn Connect</a>
+      <a href="/quality-report.html" class="nav-item"><i class="fas fa-chart-line"></i> Quality Reports</a>
+    </div>
 
-    <select id="type">
-      <option value="caption">Caption IG</option>
-      <option value="artikel">Artikel</option>
-      <option value="chat">Chat AI</option>
-    </select>
+    <div class="system-log" style="margin-top: 20px; font-size: 10px;">
+      CONTACT DETAILS:<br>
+      P: +62 821 9091 2115<br>
+      E: fandiyoku@gmail.com
+    </div>
+  </div>
 
-    <button onclick="generate()">Generate</button>
+  <div class="main-panel">
+    <div class="header-bar">
+      <h2 style="margin:0; letter-spacing: 2px;">FANDY AI MARKETING COMMAND</h2>
+      <div class="system-log">Uptime: 99.9% | OS: Ubuntu 24.04 | Env: Production</div>
+    </div>
 
-    <div class="output" id="output"></div>
-    <button class="copy-btn" onclick="copyText()">Copy</button>
+    <div class="dashboard-grid">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        
+        <div class="cyber-card">
+          <h3 style="margin-top:0; font-size: 14px; color: var(--neon-cyan);">>> PROFESSIONAL ARCHIVE</h3>
+          <p class="bio-text">
+            Driven by the ever-changing algorithms of the global tech landscape, I have pivoted from a 
+            <strong>Bachelor of Theology</strong> into high-level <strong>Technical Marketing Engineering</strong>. 
+            <br><br>
+            As a <strong>Global Self-Taught Learner</strong>, I bridge the gap between resources and knowledge by 
+            engaging with international tech communities and learning from global industry leaders. 
+            Without relying on formal certifications, I have mastered <strong>AI Engineering, Web Architecture, 
+            and DevOps</strong> through pure hands-on execution and independent study. 
+            <br><br>
+            My journey is a testament to <strong>Resourcefulness</strong>—transforming limited access into 
+            limitless capability by building neural-integrated systems and managing containerized workflows 
+            to solve modern marketing challenges.
+          </p>
+          
+          <div class="tools-container">
+            <i class="fab fa-docker tool-icon" title="Docker"></i>
+            <i class="fab fa-github tool-icon" title="GitHub"></i>
+            <i class="fab fa-node-js tool-icon" title="Node.js"></i>
+            <i class="fab fa-python tool-icon" title="Python"></i>
+            <i class="fab fa-ubuntu tool-icon" title="Ubuntu"></i>
+            <i class="fas fa-cloud tool-icon" title="Cloud Deployment"></i>
+            <i class="fas fa-shield-halved tool-icon" title="Security"></i>
+          </div>
+        </div>
+
+        <div class="cyber-card">
+          <h3 style="margin-top:0; font-size: 14px; color: var(--neon-cyan);">>> AI NEURAL ENGINE</h3>
+          <textarea id="input" rows="3" placeholder="Input neural prompt..."></textarea>
+          <button class="btn-execute" onclick="generate()">Execute Sequence</button>
+          <div class="output-box" id="output">System ready. Awaiting command...</div>
+        </div>
+      </div>
+
+      <div class="cyber-card">
+        <h3 style="margin-top:0; font-size: 14px; color: var(--neon-purple);">>> STUDY CASE REPOS</h3>
+        <ul class="repo-list">
+          <li class="repo-item"><a href="https://github.com/fandiyoku-netizen/ai-content-generator" target="_blank">1. AI Content Generator [Live]</a></li>
+          <li class="repo-item"><a href="https://github.com/fandiyoku-netizen/Ads-Dashboard" target="_blank">2. Ads Marketing Dashboard</a></li>
+          <li class="repo-item"><a href="https://github.com/fandiyoku-netizen/ads-funnel-dashboard" target="_blank">3. Ads Funnel Analysis (Python)</a></li>
+          <li class="repo-item"><a href="https://github.com/fandiyoku-netizen/wsl2-docker-optimization-study" target="_blank">4. WSL2 & Docker Optimization</a></li>
+        </ul>
+
+        <div style="margin-top: 25px; font-size: 11px; color: var(--text-gray);">
+          <strong>TECH STACK INVOLVED:</strong><br>
+          - Engine: Gemini 3 Flash<br>
+          - Core: HTML5 / CSS3 / JavaScript<br>
+          - Backend: Node.js / Serverless<br>
+          - Env: Docker, Ubuntu, Vercel
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <script>
     async function generate() {
       const prompt = document.getElementById("input").value;
-      const type = document.getElementById("type").value;
       const output = document.getElementById("output");
-
-      output.innerHTML = "<span class='loading'>Generating...</span>";
-
-      const res = await fetch("/api/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ prompt, type })
-      });
-
-      const data = await res.json();
-      output.innerText = data.result;
-    }
-
-    function copyText() {
-      const text = document.getElementById("output").innerText;
-      navigator.clipboard.writeText(text);
-      alert("Copied!");
+      output.innerHTML = "<span style='color:var(--neon-purple)'>PROCESSOR STARTING...</span>";
+      
+      try {
+        const res = await fetch("/api/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt, type: "chat" })
+        });
+        const data = await res.json();
+        output.innerText = data.result;
+      } catch (err) {
+        output.innerText = "> FATAL ERROR: CONNECTION LOST";
+      }
     }
   </script>
 </body>
