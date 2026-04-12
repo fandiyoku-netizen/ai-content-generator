@@ -26,7 +26,15 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-
+// Health check endpoint
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    status: "healthy",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    message: "API is running correctly"
+  });
+});
 
 const openai = new OpenAI({
 
@@ -61,17 +69,10 @@ app.post("/generate", async (req, res) => {
       systemPrompt = "Tulis artikel singkat yang informatif.";
 
     } else {
-
-      systemPrompt = "Jawab seperti asisten AI.";
-
-    } else {
       return res.status(400).json({ error: "Invalid type. Use: caption, artikel, or chat" });
     }
 
 
-    const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
 
 
     const response = await openai.chat.completions.create({
