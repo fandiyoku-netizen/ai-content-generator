@@ -1,343 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FANDY | AI Marketing Command Center</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    :root {
-      --bg-dark: #050505;
-      --card-bg: #0d0d0d;
-      --neon-cyan: #00f2ff;
-      --neon-purple: #bc13fe;
-      --terminal-green: #33ff33;
-      --text-gray: #888;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--bg-dark);
-      color: white;
-      margin: 0;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    /* SIDEBAR & PROFILE */
-    .sidebar {
-      width: 280px;
-      background: var(--card-bg);
-      border-right: 1px solid #1a1a1a;
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-    }
-
-    .profile-box {
-      text-align: center;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #222;
-      margin-bottom: 20px;
-    }
-
-    .profile-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 2px solid var(--neon-cyan);
-      box-shadow: 0 0 15px var(--neon-cyan);
-      object-fit: cover;
-      margin-bottom: 15px;
-    }
-
-    .profile-name {
-      font-size: 18px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      color: white;
-    }
-
-    .profile-title {
-      font-size: 11px;
-      color: var(--neon-cyan);
-      text-transform: uppercase;
-      margin-top: 5px;
-    }
-
-    .nav-links {
-      flex: 1;
-    }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      padding: 12px;
-      color: var(--text-gray);
-      text-decoration: none;
-      font-size: 13px;
-      border-radius: 5px;
-      transition: 0.3s;
-      margin-bottom: 5px;
-    }
-
-    .nav-item i { margin-right: 15px; width: 20px; text-align: center; }
-    .nav-item:hover, .nav-item.active {
-      background: rgba(0, 242, 255, 0.1);
-      color: var(--neon-cyan);
-    }
-
-    /* MAIN PANEL */
-    .main-panel {
-      flex: 1;
-      padding: 25px;
-      overflow-y: auto;
-      background: linear-gradient(135deg, #050505 0%, #0a0a0a 100%);
-    }
-
-    .header-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-    }
-
-    .system-log {
-      font-family: 'Courier New', monospace;
-      font-size: 11px;
-      color: var(--terminal-green);
-    }
-
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 20px;
-    }
-
-    .cyber-card {
-      background: rgba(13, 13, 13, 0.8);
-      border: 1px solid #222;
-      border-radius: 10px;
-      padding: 20px;
-      position: relative;
-    }
-
-    .cyber-card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; width: 10px; height: 10px;
-      border-top: 2px solid var(--neon-cyan);
-      border-left: 2px solid var(--neon-cyan);
-    }
-
-    .bio-text {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #ccc;
-    }
-
-    .tools-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 15px;
-    }
-
-    .tool-icon {
-      font-size: 20px;
-      color: var(--text-gray);
-      transition: 0.3s;
-    }
-    .tool-icon:hover { color: var(--neon-cyan); transform: scale(1.2); }
-
-    .repo-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .repo-item {
-      background: #151515;
-      margin-bottom: 10px;
-      padding: 10px;
-      border-radius: 5px;
-      border-left: 3px solid var(--neon-purple);
-      transition: 0.3s;
-    }
-
-    .repo-item:hover { background: #222; transform: translateX(5px); }
-    .repo-item a {
-      color: white;
-      text-decoration: none;
-      font-size: 12px;
-      display: block
-    }
-
-    textarea {
-      width: 100%;
-      background: #000;
-      border: 1px solid #333;
-      color: var(--neon-cyan);
-      padding: 12px;
-      border-radius: 5px;
-      font-family: 'Courier New', monospace;
-      margin-top: 10px;
-      box-sizing: border-box;
-    }
-
-    .btn-execute {
-      width: 100%;
-      background: var(--neon-cyan);
-      color: black;
-      border: none;
-      padding: 12px;
-      margin-top: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      text-transform: uppercase;
-    }
-
-    .output-box {
-      margin-top: 15px;
-      background: #000;
-      border: 1px dashed var(--neon-cyan);
-      padding: 15px;
-      min-height: 80px;
-      font-family: 'Courier New', monospace;
-      font-size: 13px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fandy Yoku | AI Cyber Nexus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyberbg: '#050509',
+                        cybergreen: '#00ff41', // Warna matrix
+                        cyberblue: '#00e5ff', // Warna aksen
+                        cyberpane: '#0a0a12'
+                    },
+                    fontFamily: {
+                        mono: ['Courier New', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Efek teks neon sederhana */
+        .neon-text {
+            text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41;
+        }
+        /* Mengubah scrollbar agar tema cyber */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050509; }
+        ::-webkit-scrollbar-thumb { background: #00ff41; border-radius: 4px; }
+    </style>
 </head>
-<body>
+<body class="bg-cyberbg text-gray-300 font-mono">
 
-  <div class="sidebar">
-    <div class="profile-box">
-      <img src="/fandy-cyber.png" alt="Fandy Yoku" class="profile-img">
-      <div class="profile-name">FANDY YOKU</div>
-      <div class="profile-title">Technical Marketing Engineer</div>
-    </div>
+    <div class="fixed inset-0 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] opacity-10"></div>
 
-    <div class="nav-links">
-      <a href="#" class="nav-item active"><i class="fas fa-terminal"></i> Command Center</a>
-      <a href="https://github.com/fandiyoku-netizen" target="_blank" class="nav-item"><i class="fab fa-github"></i> GitHub Profile</a>
-      <a href="https://www.linkedin.com/in/fandy-yoku-a0264a176/" target="_blank" class="nav-item"><i class="fab fa-linkedin"></i> LinkedIn Connect</a>
-      <a href="./quality-report.html" class="nav-item"><i class="fas fa-chart-line"></i> Quality Reports</a>
-    </div>
-
-    <div class="system-log" style="margin-top: 20px; font-size: 10px;">
-      CONTACT DETAILS:<br>
-      P: +62 821 9091 2115<br>
-      E: fandiyoku@gmail.com
-    </div>
-  </div>
-
-  <div class="main-panel">
-    <div class="header-bar">
-      <h2 style="margin:0; letter-spacing: 2px;">FANDY AI MARKETING COMMAND</h2>
-      <div class="system-log">Uptime: 99.9% | OS: Ubuntu 24.04 | Env: Production</div>
-    </div>
-
-    <div class="dashboard-grid">
-      <div style="display: flex; flex-direction: column; gap: 20px;">
-        
-        <div class="cyber-card">
-          <h3 style="margin-top:0; font-size: 14px; color: var(--neon-cyan);">>> PROFESSIONAL ARCHIVE</h3>
-          <div class="bio-text">
-            <div style="margin-bottom: 15px;">
-              <span style="color: var(--neon-cyan); margin-right: 8px;">•</span>
-              <strong style="color: var(--neon-cyan);">PROFESSIONAL EVOLUTION:</strong><br>
-              <span style="margin-left: 16px; display: block; margin-top: 4px;">
-                • Bachelor of Theology to Technical Marketing Engineering<br>
-                • Adapted to global tech algorithm changes<br>
-                • Continuous learning and skill development
-              </span>
+    <header class="border-b border-cybergreen/30 bg-cyberpane sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <button onclick="toggleMenu()" class="text-cybergreen hover:text-white transition p-2 border border-cybergreen/50 rounded">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <span class="text-xl font-bold neon-text text-cybergreen">FANDY_YOKU://AI_NEXUS</span>
             </div>
-            
-            <div style="margin-bottom: 15px;">
-              <span style="color: var(--neon-cyan); margin-right: 8px;">•</span>
-              <strong style="color: var(--neon-cyan);">LEARNING METHODOLOGY:</strong><br>
-              <span style="margin-left: 16px; display: block; margin-top: 4px;">
-                • Global Self-Taught Learner bridging resource gaps<br>
-                • Engaging with international open-source communities<br>
-                • Mastering technical skills through industry-standard documentation<br>
-                • Active participation in global tech forums
-              </span>
-            </div>
-            
-            <div style="margin-bottom: 15px;">
-              <span style="color: var(--neon-cyan); margin-right: 8px;">•</span>
-              <strong style="color: var(--neon-cyan);">TECHNICAL MASTERY:</strong><br>
-              <span style="margin-left: 16px; display: block; margin-top: 4px;">
-                • Expertise in AI Engineering and Web Architecture<br>
-                • Proficient in DevOps and Cloud Deployment<br>
-                • Pure hands-on execution methodology<br>
-                • Independent study with real-world application focus
-              </span>
-            </div>
-          </div>
-          
-          <div class="tools-container">
-            <i class="fab fa-docker tool-icon" title="Docker"></i>
-            <i class="fab fa-github tool-icon" title="GitHub"></i>
-            <i class="fab fa-node-js tool-icon" title="Node.js"></i>
-            <i class="fab fa-python tool-icon" title="Python"></i>
-            <i class="fab fa-ubuntu tool-icon" title="Ubuntu"></i>
-            <i class="fas fa-cloud tool-icon" title="Cloud Deployment"></i>
-            <i class="fas fa-shield-halved tool-icon" title="Security"></i>
-            <i class="fab fa-openai tool-icon" title="OpenAI"></i>
-            <i class="fas fa-wind tool-icon" title="Windsurf"></i>
-            <i class="fab fa-git-alt tool-icon" title="Git"></i>
-          </div>
-        </div>
+            <div class="text-sm text-cyberblue">Status: <span class="animate-pulse">ONLINE</span></div>
+        </nav>
+    </header>
 
-        <div class="cyber-card">
-          <h3 style="margin-top:0; font-size: 14px; color: var(--neon-cyan);">>> AI NEURAL ENGINE</h3>
-          <textarea id="input" rows="3" placeholder="Input neural prompt..."></textarea>
-          <button class="btn-execute" onclick="generate()">Execute Sequence</button>
-          <div class="output-box" id="output">System ready. Awaiting command...</div>
-        </div>
-      </div>
-
-      <div class="cyber-card">
-        <h3 style="margin-top:0; font-size: 14px; color: var(--neon-purple);">>> STUDY CASE REPOS</h3>
-        <ul class="repo-list">
-          <li class="repo-item"><a href="https://github.com/fandiyoku-netizen/ai-content-generator" target="_blank">1. AI Content Generator [Live]</a></li>
-          <li class="repo-item"><a href="https://adsdasboard1.vercel.app/" target="_blank"rel="noopener noreferrer">2. Ads Marketing Dashboard</a></li>
-          <li class="repo-item"><a href="https://ads-funnel.vercel.app/" target="_blank"rel="noopener noreferrer">3. Ads Funnel Analysis (Python)</a></li>
-          <li class="repo-item"><a href="https://github.com/fandiyoku-netizen/wsl2-docker-optimization-study" target="_blank">4. WSL2 & Docker Optimization</a></li>
+    <div id="sidebar" class="fixed inset-y-0 left-0 transform -translate-x-full transition-transform duration-300 ease-in-out z-40 w-64 bg-cyberpane border-r border-cybergreen/30 p-6 pt-20">
+        <h2 class="text-cybergreen text-lg mb-6 border-b border-cybergreen/30 pb-2">> NAV_SYSTEM</h2>
+        <ul class="space-y-4">
+            <li><a href="#" class="block hover:text-cybergreen hover:pl-2 transition-all">>> Home</a></li>
+            <li><a href="#dashboard" class="block hover:text-cybergreen hover:pl-2 transition-all">>> Data Dashboard</a></li>
+            <li><a href="https://adsdasboard1.vercel.app/" target="_blank" class="block hover:text-cyberblue hover:pl-2 transition-all">>> Analysis Link</a></li>
+            <li><a href="#content" class="block hover:text-cybergreen hover:pl-2 transition-all">>> AI Content</a></li>
+            <li><a href="#contact" class="block hover:text-cybergreen hover:pl-2 transition-all">>> Contact</a></li>
         </ul>
-
-        <div style="margin-top: 25px; font-size: 11px; color: var(--text-gray);">
-          <strong style="color: var(--neon-purple);">TECH STACK INVOLVED:</strong><br>
-          <span style="margin-left: 8px;">• Engine: Gemini 3 Flash & OpenAI API</span><br>
-          <span style="margin-left: 8px;">• Core: HTML5 / CSS3 / JavaScript</span><br>
-          <span style="margin-left: 8px;">• Backend: Node.js / Serverless</span><br>
-          <span style="margin-left: 8px;">• Env: Docker, Ubuntu, Vercel</span><br>
-          <span style="margin-left: 8px;">• AI Tools: ChatGPT & Windsurf AI</span>
-        </div>
-      </div>
-
     </div>
-  </div>
 
-  <script>
-    async function generate() {
-      const prompt = document.getElementById("input").value;
-      const output = document.getElementById("output");
-      output.innerHTML = "<span style='color:var(--neon-purple)'>PROCESSOR STARTING...</span>";
-      
-      try {
-        const res = await fetch("/api/generate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt, type: "chat" })
-        });
-        const data = await res.json();
-        output.innerText = data.result;
-      } catch (err) {
-        output.innerText = "> FATAL ERROR: CONNECTION LOST";
-      }
-    }
-  </script>
+    <main class="container mx-auto px-4 py-8 space-y-12">
+
+        <section id="hero" class="border border-cybergreen/30 bg-cyberpane p-6 rounded shadow-[0_0_15px_rgba(0,255,65,0.1)]">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-cybergreen neon-text mb-4">// Welcome to the Nexus</h1>
+                    <p class="text-gray-400 mb-6">Integrating advanced AI models with robust backend architecture. This interface serves as a gateway to my projects in RAG, Agentic Workflows, and Performance Data Analysis.</p>
+                    <a href="#dashboard" class="inline-block bg-cybergreen text-cyberbg px-6 py-2 rounded font-bold hover:bg-white transition shadow-[0_0_10px_#00ff41]">Initialize Dashboard</a>
+                </div>
+                <div class="border-2 border-dashed border-cybergreen/30 rounded flex items-center justify-center h-64 bg-black/50 text-cybergreen/50">
+                    [ MEDIA_PLACEHOLDER: Upload Photo/Video Here ]
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="space-y-4">
+            <h2 class="text-2xl text-cyberblue border-l-4 border-cyberblue pl-3">/ / Data_Inference_Panel</h2>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-cyberpane border border-cyberblue/30 p-4 rounded">
+                    <div class="text-xs text-cyberblue">API_REQUESTS</div>
+                    <div class="text-3xl font-bold text-white">1,240 <span class="text-xs text-cybergreen">+5%</span></div>
+                </div>
+                <div class="bg-cyberpane border border-cyberblue/30 p-4 rounded">
+                    <div class="text-xs text-cyberblue">AI_LATENCY</div>
+                    <div class="text-3xl font-bold text-white">250ms</div>
+                </div>
+                <div class="bg-cyberpane border border-cyberblue/30 p-4 rounded">
+                    <div class="text-xs text-cyberblue">MODEL_ACCURACY</div>
+                    <div class="text-3xl font-bold text-white">98.2%</div>
+                </div>
+            </div>
+            <div class="bg-cyberpane h-64 border border-cyberblue/30 rounded flex items-center justify-center text-cyberblue/50">
+                [ REALTIME_CHART_HOLDER ]
+            </div>
+        </section>
+
+        <section id="content" class="bg-cyberpane border border-cybergreen/30 p-6 rounded">
+            <h2 class="text-xl text-cybergreen mb-4">> AI_Insights_Log</h2>
+            <div class="bg-black/70 p-4 rounded font-mono text-sm text-gray-400 border border-cybergreen/20 h-40 overflow-y-auto">
+                <p class="text-cybergreen">[System Log - 2024-05-20 09:15:02]</p>
+                <p>Analyzing new retrieval-augmented generation (RAG) techniques.</p>
+                <p>Focusing on 'Chain-of-Thought' reasoning in multi-agent orchestration frameworks like CrewAI.</p>
+                <p class="text-cyberblue">> Hypothesis: Contextual memory improves inference quality by 15%.</p>
+                <p>Status: Compiling test results...</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact" class="border-t border-cybergreen/30 bg-cyberpane mt-12 py-8">
+        <div class="container mx-auto px-4 text-center space-y-4">
+            <h3 class="text-lg text-cybergreen">contact_operator();</h3>
+            <p class="text-gray-400">Email: <a href="mailto:fandiyoku@gmail.com" class="text-cybergreen hover:underline">fandiyoku@gmail.com</a></p>
+            <p class="text-gray-400">LinkedIn: <a href="https://www.linkedin.com/in/fandy-yoku-a0264a176" target="_blank" class="text-cybergreen hover:underline">fandy-yoku</a></p>
+            <div class="text-xs text-gray-600 mt-4">&copy; 2024 Fandy Yoku. All systems operational.</div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        }
+    </script>
 </body>
 </html>
