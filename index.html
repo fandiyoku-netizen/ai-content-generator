@@ -7,12 +7,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
-      --bg-dark: #050505;
-      --card-bg: #0d0d0d;
+      /* Diubah dari #050505 ke abu-abu gelap yang lebih "deep" namun terang */
+      --bg-dark: #121417; 
+      /* Diubah dari #0d0d0d agar kartu terlihat lebih menonjol */
+      --card-bg: #1a1d23; 
       --neon-cyan: #00f2ff;
       --neon-purple: #bc13fe;
       --terminal-green: #33ff33;
-      --text-gray: #888;
+      --text-gray: #a0a0a0; /* Sedikit lebih terang dari sebelumnya */
     }
 
     body {
@@ -29,7 +31,7 @@
     .sidebar {
       width: 280px;
       background: var(--card-bg);
-      border-right: 1px solid #1a1a1a;
+      border-right: 1px solid #2d333b; /* Border lebih terang */
       display: flex;
       flex-direction: column;
       padding: 20px;
@@ -38,7 +40,7 @@
     .profile-box {
       text-align: center;
       padding-bottom: 20px;
-      border-bottom: 1px solid #222;
+      border-bottom: 1px solid #2d333b;
       margin-bottom: 20px;
     }
 
@@ -47,7 +49,7 @@
       height: 120px;
       border-radius: 50%;
       border: 2px solid var(--neon-cyan);
-      box-shadow: 0 0 15px var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
       object-fit: cover;
       margin-bottom: 15px;
     }
@@ -93,7 +95,8 @@
       flex: 1;
       padding: 25px;
       overflow-y: auto;
-      background: linear-gradient(135deg, #050505 0%, #0a0a0a 100%);
+      /* Gradient diubah agar bagian tengah lebih terang sedikit */
+      background: linear-gradient(135deg, #121417 0%, #1c1f26 100%);
     }
 
     .header-bar {
@@ -116,8 +119,8 @@
     }
 
     .cyber-card {
-      background: rgba(13, 13, 13, 0.8);
-      border: 1px solid #222;
+      background: rgba(26, 29, 35, 0.9); /* Sedikit lebih solid */
+      border: 1px solid #30363d; /* Border kartu lebih terlihat */
       border-radius: 10px;
       padding: 20px;
       position: relative;
@@ -134,7 +137,7 @@
     .bio-text {
       font-size: 13px;
       line-height: 1.6;
-      color: #ccc;
+      color: #e6edf3; /* Teks bio lebih putih agar mudah dibaca */
     }
 
     .tools-container {
@@ -146,7 +149,7 @@
 
     .tool-icon {
       font-size: 20px;
-      color: var(--text-gray);
+      color: #7d8590;
       transition: 0.3s;
     }
     .tool-icon:hover { color: var(--neon-cyan); transform: scale(1.2); }
@@ -157,7 +160,7 @@
     }
 
     .repo-item {
-      background: #151515;
+      background: #21262d;
       margin-bottom: 10px;
       padding: 10px;
       border-radius: 5px;
@@ -165,7 +168,7 @@
       transition: 0.3s;
     }
 
-    .repo-item:hover { background: #222; transform: translateX(5px); }
+    .repo-item:hover { background: #30363d; transform: translateX(5px); }
     .repo-item a {
       color: white;
       text-decoration: none;
@@ -175,8 +178,8 @@
 
     textarea {
       width: 100%;
-      background: #000;
-      border: 1px solid #333;
+      background: #0d1117;
+      border: 1px solid #30363d;
       color: var(--neon-cyan);
       padding: 12px;
       border-radius: 5px;
@@ -195,11 +198,12 @@
       font-weight: bold;
       cursor: pointer;
       text-transform: uppercase;
+      box-shadow: 0 4px 10px rgba(0, 242, 255, 0.2);
     }
 
     .output-box {
       margin-top: 15px;
-      background: #000;
+      background: #0d1117;
       border: 1px dashed var(--neon-cyan);
       padding: 15px;
       min-height: 80px;
@@ -209,6 +213,7 @@
   </style>
 </head>
 <body>
+
 
   <div class="sidebar">
     <div class="profile-box">
