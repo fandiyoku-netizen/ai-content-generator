@@ -1,435 +1,590 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FANDY | AI Marketing Command Center</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    :root {
-      --bg-dark: #121417; 
-      --card-bg: #1a1d23; 
-      --neon-cyan: #00f2ff;
-      --neon-purple: #bc13fe;
-      --terminal-green: #33ff33;
-      --text-gray: #a0a0a0;
-    }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--bg-dark);
-      color: white;
-      margin: 0;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fandy Yoku | Technical Marketing Engineer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#095300",
+                        "on-secondary": "#520072",
+                        "background": "#000000",
+                        "primary": "#e1fdff",
+                        "on-background": "#e2e2e6",
+                        "primary-fixed-dim": "#00dbe7",
+                        "surface-bright": "#37393d",
+                        "on-primary": "#00363a",
+                        "on-surface": "#e2e2e6",
+                        "inverse-surface": "#e2e2e6",
+                        "tertiary-fixed": "#79ff5b",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#00dbe7",
+                        "tertiary-fixed-dim": "#2ae500",
+                        "surface-variant": "#333538",
+                        "secondary-fixed-dim": "#ebb2ff",
+                        "surface-dim": "#111316",
+                        "on-primary-container": "#006a71",
+                        "electric-purple": "#BC13FE",
+                        "surface-container-highest": "#333538",
+                        "on-primary-fixed-variant": "#004f54",
+                        "on-tertiary-container": "#106f00",
+                        "surface-container-lowest": "#0c0e11",
+                        "secondary-fixed": "#f8d8ff",
+                        "on-secondary-container": "#fff6fc",
+                        "secondary": "#ebb2ff",
+                        "outline-variant": "#3a494b",
+                        "surface-container-high": "#282a2d",
+                        "on-primary-fixed": "#002022",
+                        "tertiary-container": "#34fc0d",
+                        "on-secondary-fixed": "#320047",
+                        "error-container": "#93000a",
+                        "outline": "#849495",
+                        "on-tertiary-fixed": "#022100",
+                        "on-surface-variant": "#b9cacb",
+                        "error": "#ffb4ab",
+                        "surface-elevated": "#1A1D23",
+                        "inverse-on-surface": "#2f3034",
+                        "secondary-container": "#b600f8",
+                        "on-error": "#690005",
+                        "inverse-primary": "#00696f",
+                        "surface": "#111316",
+                        "surface-base": "#121417",
+                        "tertiary": "#e4ffd6",
+                        "surface-container-low": "#1a1c1f",
+                        "on-tertiary": "#053900",
+                        "neon-cyan": "#00F2FF",
+                        "primary-fixed": "#74f5ff",
+                        "on-secondary-fixed-variant": "#74009f",
+                        "uptime-green": "#39FF14",
+                        "surface-container": "#1e2023",
+                        "primary-container": "#00f2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "component-gap": "16px",
+                        "base-unit": "4px",
+                        "section-gap": "64px",
+                        "container-padding": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "code-label": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "status-label": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["18px", {"lineHeight": "1.4", "fontWeight": "700"}],
+                        "code-label": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "status-label": ["11px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .cyber-glow {
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+        }
 
-    .sidebar {
-      width: 280px;
-      background: var(--card-bg);
-      border-right: 1px solid #2d333b;
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-    }
+        .pulse-border {
+            position: relative;
+        }
+        .pulse-border::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border: 2px solid #00F2FF;
+            border-radius: inherit;
+            animation: pulse 2s infinite;
+            pointer-events: none;
+        }
 
-    .profile-box {
-      text-align: center;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #2d333b;
-      margin-bottom: 20px;
-    }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 0; }
+        }
 
-    .profile-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 2px solid var(--neon-cyan);
-      box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
-      object-fit: cover;
-      margin-bottom: 15px;
-    }
+        .glass-panel {
+            background: rgba(18, 20, 23, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    .profile-name {
-      font-size: 18px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      color: white;
-    }
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2em;
+            background: #00F2FF;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
 
-    .profile-title {
-      font-size: 11px;
-      color: var(--neon-cyan);
-      text-transform: uppercase;
-      margin-top: 5px;
-    }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
 
-    .nav-links {
-      flex: 1;
-    }
+        /* Ken Burns Effect */
+        @keyframes ken-burns {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.1) translate(-1%, -1%); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
 
-    .nav-item {
-      display: flex;
-      align-items: center;
-      padding: 12px;
-      color: var(--text-gray);
-      text-decoration: none;
-      font-size: 13px;
-      border-radius: 5px;
-      transition: 0.3s;
-      margin-bottom: 5px;
-    }
+        .ken-burns-bg {
+            animation: ken-burns 10s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    .nav-item i { margin-right: 15px; width: 20px; text-align: center; }
-    .nav-item:hover, .nav-item.active {
-      background: rgba(0, 242, 255, 0.1);
-      color: var(--neon-cyan);
-    }
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: #000000;
+        }
 
-    /* MAIN PANEL */
-    .main-panel {
-      flex: 1;
-      padding: 25px;
-      overflow-y: auto;
-      background: linear-gradient(135deg, #121417 0%, #1c1f26 100%);
-    }
+        /* Typing Effect Classes */
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid transparent;
+        }
+        
+        .typing-active .typing-text {
+            animation: typing 1s steps(20, end), blink-caret .75s step-end infinite;
+        }
 
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 30px;
-    }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
 
-    .header-left h2 {
-      margin: 0; 
-      letter-spacing: 2px;
-    }
-
-    .system-log {
-      font-family: 'Courier New', monospace;
-      font-size: 11px;
-      color: var(--terminal-green);
-      margin-top: 5px;
-    }
-
-    /* Top Right Navigation Menu Style */
-    .top-right-nav {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-      background: rgba(26, 29, 35, 0.6);
-      padding: 10px;
-      border: 1px solid #30363d;
-      border-radius: 6px;
-      max-width: 450px;
-    }
-
-    .top-nav-link {
-      font-size: 11px;
-      color: var(--text-gray);
-      text-decoration: none;
-      transition: color 0.2s ease;
-      text-align: right;
-      line-height: 1.3;
-    }
-
-    .top-nav-link:hover {
-      color: var(--neon-cyan);
-    }
-
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 20px;
-    }
-
-    .cyber-card {
-      background: rgba(26, 29, 35, 0.9); 
-      border: 1px solid #30363d;
-      border-radius: 10px;
-      padding: 20px;
-      position: relative;
-    }
-
-    .cyber-card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; width: 10px; height: 10px;
-      border-top: 2px solid var(--neon-cyan);
-      border-left: 2px solid var(--neon-cyan);
-    }
-
-    .bio-text {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #e6edf3;
-    }
-
-    .archive-section {
-      margin-bottom: 25px;
-    }
-
-    .archive-section:last-child {
-      margin-bottom: 0;
-    }
-
-    .archive-link {
-      color: var(--neon-cyan);
-      text-decoration: none;
-      font-weight: bold;
-      transition: text-shadow 0.2s;
-    }
-
-    .archive-link:hover {
-      text-shadow: 0 0 8px rgba(0, 242, 255, 0.6);
-    }
-
-    .tools-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 20px;
-      padding-top: 15px;
-      border-top: 1px dashed #30363d;
-    }
-
-    .tool-icon {
-      font-size: 20px;
-      color: #7d8590;
-      transition: 0.3s;
-    }
-    .tool-icon:hover { color: var(--neon-cyan); transform: scale(1.2); }
-
-    .repo-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .repo-item {
-      background: #21262d;
-      margin-bottom: 10px;
-      padding: 10px;
-      border-radius: 5px;
-      border-left: 3px solid var(--neon-purple);
-      transition: 0.3s;
-    }
-
-    .repo-item:hover { background: #30363d; transform: translateX(5px); }
-    .repo-item a {
-      color: white;
-      text-decoration: none;
-      font-size: 12px;
-      display: block;
-    }
-
-    textarea {
-      width: 100%;
-      background: #0d1117;
-      border: 1px solid #30363d;
-      color: var(--neon-cyan);
-      padding: 12px;
-      border-radius: 5px;
-      font-family: 'Courier New', monospace;
-      margin-top: 10px;
-      box-sizing: border-box;
-    }
-
-    .btn-execute {
-      width: 100%;
-      background: var(--neon-cyan);
-      color: black;
-      border: none;
-      padding: 12px;
-      margin-top: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      text-transform: uppercase;
-      box-shadow: 0 4px 10px rgba(0, 242, 255, 0.2);
-    }
-
-    .output-box {
-      margin-top: 15px;
-      background: #0d1117;
-      border: 1px dashed var(--neon-cyan);
-      padding: 15px;
-      min-height: 80px;
-      font-family: 'Courier New', monospace;
-      font-size: 13px;
-    }
-  </style>
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00F2FF; }
+        }
+    </style>
 </head>
-<body>
-
-  <div class="sidebar">
-    <div class="profile-box">
-      <img src="/fandy-cyber.png" alt="Fandy Yoku" class="profile-img">
-      <div class="profile-name">FANDY YOKU</div>
-      <div class="profile-title">Technical Marketing Engineer</div>
-    </div>
-
-    <div class="nav-links">
-      <a href="#" class="nav-item active"><i class="fas fa-terminal"></i> Command Center</a>
-      <a href="https://github.com/fandiyoku-netizen" target="_blank" class="nav-item"><i class="fab fa-github"></i> GitHub Profile</a>
-      <a href="https://www.linkedin.com/in/fandy-yoku-a0264a176/" target="_blank" class="nav-item"><i class="fab fa-linkedin"></i> LinkedIn Connect</a>
-      <a href="./quality-report.html" class="nav-item"><i class="fas fa-chart-line"></i> Quality Reports</a>
-    </div>
-
-    <div class="system-log" style="margin-top: 20px; font-size: 10px;">
-      CONTACT DETAILS:<br>
-      P: <a href="https://wa.me/6282190912115" target="_blank" style="color: var(--text-gray); text-decoration: none;"><span onmouseover="this.style.color='var(--neon-cyan)'" onmouseout="this.style.color='var(--text-gray)'">+62 821 9091 2115</span></a><br>
-      E: fandiyoku3@gmail.com
-    </div>
-  </div>
-
-  <div class="main-panel">
-    <div class="header-container">
-      <div class="header-left">
-        <h2 style="margin:0; letter-spacing: 2px;">FANDY AI MARKETING COMMAND</h2>
-        <div class="system-log">Uptime: 99.9% | OS: Ubuntu 24.04 | Env: Production</div>
-      </div>
-      
-      <div class="top-right-nav">
-        <a href="https://github.com/fandiyoku-netizen/fandi-portfolio" target="_blank" class="top-nav-link"><i class="fas fa-briefcase" style="font-size: 10px; margin-right: 4px;"></i> Digital Marketing Portfolio</a>
-        <a href="https://sites.google.com/view/appsflyermolocoandapplovininte/beranda" target="_blank" class="top-nav-link"><i class="fas fa-project-diagram" style="font-size: 10px; margin-right: 4px;"></i> AppsFlyer, Moloco, and AppLovin Integration Strategy: Maximizing ROI Through Data-Driven Advertising Ecosystems</a>
-        <a href="https://wa.me/6282190912115?text=Hi%20Fandy,%20I%20saw%20your%20AI%20Marketing%20Command%20Center%20and%20would%20like%20to%20connect." target="_blank" class="top-nav-link">
-          <i class="fab fa-whatsapp" style="font-size: 10px; margin-right: 4px; color: #25D366;"></i> Contact via WhatsApp
-        </a>
-      </div>
-    </div>
-
-    <div class="dashboard-grid">
-      <div style="display: flex; flex-direction: column; gap: 20px;">
-        
-        <div class="cyber-card">
-          <h3 style="margin-top:0; font-size: 14px; color: var(--neon-cyan);">>> SUMMARY</h3>
-          <div class="bio-text">
-            <p style="margin-top: 0; margin-bottom: 20px; text-align: justify; border-left: 2px solid var(--neon-cyan); padding-left: 10px;">
-              A Technical Marketing Engineer with a unique foundational trajectory (Bachelor of Theology to Technical Marketing Engineering), highly adaptive to global tech algorithm shifts through continuous, self-directed learning. Focused on synthesizing Digital Marketing, AI Engineering, and AdsTech to drive data-backed business growth. Proficient in modern growth marketing methodologies and the tech advertising ecosystem, effectively bridging the gap between digital marketing strategies and robust backend infrastructure.
-            </p>
-            
-            <div class="archive-section">
-              <strong style="color: var(--neon-cyan); display: block; margin-bottom: 4px;"><i class="fas fa-ad"></i> 1. Tech Advertising Advancement</strong>
-              The tech advertising landscape is rapidly shifting toward AI-driven automation, stricter data privacy, and programmatic complexity (DSP architecture & RTB logic). Mastering automated bidding strategies across diverse platforms—such as Kayzen, UnityAds, and IronSource—is critical to achieving capital-efficient ad spend at scale.
-              
-              <div style="margin-top: 12px; width: 100%; overflow: hidden; border-radius: 8px; border: 1px solid #30363d;">
-                <div style="background: #21262d; padding: 6px 12px; font-size: 11px; color: var(--neon-cyan); font-family: monospace; border-bottom: 1px solid #30363d; display: flex; justify-content: space-between;">
-                  <span><i class="fas fa-window-restore"></i> LIVE_STREAM: ADS_MARKETING_DASHBOARD</span>
-                  <span style="color: var(--terminal-green);">● INTERACTIVE</span>
+<body class="bg-black text-on-background font-body-lg selection:bg-neon-cyan/30 overflow-x-hidden">
+<!-- Matrix Background -->
+<canvas id="matrix-canvas"></canvas>
+<!-- Mobile Top App Bar -->
+<header class="md:hidden flex justify-between items-center w-full px-gutter h-20 bg-background/80 backdrop-blur-md sticky top-0 z-50 border-b border-outline-variant/15">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-black tracking-tighter text-on-surface">FANDY YOKU</h1>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-neon-cyan" data-icon="menu">menu</span>
+</div>
+</header>
+<!-- Side Navigation -->
+<aside class="h-screen w-80 fixed left-0 top-0 hidden md:flex flex-col border-r border-outline-variant/20 bg-black/60 backdrop-blur-xl z-50">
+<div class="flex flex-col h-full py-6 px-4">
+<!-- Brand Header -->
+<div class="mb-10 px-4">
+<div class="font-headline-md text-headline-md font-bold text-on-surface mb-1">FANDY YOKU</div>
+<div class="font-code-label text-status-label text-neon-cyan/70">TECHNICAL MARKETING ENGINEER</div>
+</div>
+<!-- Nav Items -->
+<nav class="flex-1 space-y-2" id="sidebar-nav">
+<a class="nav-item flex items-center gap-3 px-4 py-3 bg-surface-variant/30 text-neon-cyan border-l-4 border-neon-cyan shadow-[0_0_15px_rgba(0,242,255,0.1)] font-code-label text-code-label transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="terminal">terminal</span>
+<span class="typing-text">Command Center</span>
+</a>
+<a class="nav-item flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-bright/30 font-code-label text-code-label transition-all duration-300 group" href="https://github.com/fandiyoku-netizen">
+<span class="material-symbols-outlined shrink-0" data-icon="code">code</span>
+<span class="typing-text">GitHub Profile</span>
+</a>
+<a class="nav-item flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-bright/30 font-code-label text-code-label transition-all duration-300 group" href="https://www.linkedin.com/in/fandi-yoku-9b7a4214a/">
+<span class="material-symbols-outlined shrink-0" data-icon="hub">hub</span>
+<span class="typing-text">LinkedIn Connect</span>
+</a>
+<a class="nav-item flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-bright/30 font-code-label text-code-label transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="analytics">analytics</span>
+<span class="typing-text">Quality Reports</span>
+</a>
+</nav>
+<!-- Sidebar Footer -->
+<div class="mt-auto pt-6 border-t border-outline-variant/10">
+<div class="px-4 text-[10px] text-on-surface-variant uppercase tracking-widest mb-4">Contact Protocol</div>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-uptime-green font-code-label text-code-label transition-all duration-300" href="mailto:fandiyoku@gmail.com">
+<span class="material-symbols-outlined" data-icon="alternate_email">alternate_email</span>
+                    Contact Info
+                </a>
+<div class="px-4 mt-4 font-code-label text-[11px] text-on-surface-variant/60 leading-relaxed">
+                    P: +62 821 9091 2115<br/>
+                    E: fandiyoku@gmail.com
                 </div>
-                <iframe src="https://adsdasboard1.vercel.app/" style="width: 100%; height: 450px; border: none; background: #0d1117;" title="Live Ads Dashboard"></iframe>
-              </div>
-            </div>
-            
-            <div class="archive-section">
-              <strong style="color: var(--neon-cyan); display: block; margin-bottom: 4px;"><i class="fas fa-code-branch"></i> 2. API Integration & AI Web Dashboard Architecture</strong>
-              Architecting AI-powered web environments (built on Node.js, Vercel, and integrated with Gemini Flash & OpenAI APIs) for content automation and predictive analytics. Implementing robust API integrations seamlessly funnels raw marketing data from Mobile Measurement Partners (MMPs) directly into custom analytical dashboards, ensuring real-time attribution tracking and high-fidelity conversion analytics.
-            </div>
-            
-            <div class="archive-section">
-              <strong style="color: var(--neon-cyan); display: block; margin-bottom: 4px;"><i class="fas fa-rocket"></i> 3. Advanced Growth Marketing & Search Intelligence</strong>
-              Modern growth marketing has evolved beyond traditional SEO into GEO (Generative Engine Optimization) and AEO (Answer Engine Optimization), securing brand visibility across AI-driven search experiences. Leveraging deep-crawl technical auditing via Screaming Frog and simulating GoogleBot behavior to engineer site architectures fully optimized for both LLM crawlers and traditional search engines.
-              
-              <div style="margin-top: 15px; background: rgba(33, 38, 45, 0.4); border: 1px solid #30363d; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;">
-                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&auto=format&fit=crop&q=80" alt="Cyber Analytics Infrastructure & SEO Data Crawl" style="width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid #30363d;">
-                <div style="padding: 15px;">
-                  <span style="font-family: monospace; font-size: 10px; color: var(--neon-purple); text-transform: uppercase; letter-spacing: 1px;">Featured Medium Publication</span>
-                  <h4 style="margin: 5px 0 10px 0; color: white; font-size: 14px;">Cara Melacak ROAS E-Commerce dengan AppsFlyer</h4>
-                  <p style="margin: 0 0 12px 0; font-size: 12px; color: var(--text-gray); line-height: 1.5;">
-                    An in-depth technical analysis modeling mobile measurement data tunnels, configuring deterministic attribution, and aggregating return-on-ad-spend matrices via automated marketing software architectures.
-                  </p>
-                  <a href="https://medium.com/@fandiyoku/cara-melacak-roas-e-commerce-dengan-appsflyer-de00cc15337b" target="_blank" class="archive-link" style="font-size: 12px;"><i class="fab fa-medium"></i> Read Full Case Study on Medium &rarr;</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-80 min-h-screen">
+<!-- Top App Bar (Desktop) -->
+<div class="hidden md:flex justify-between items-center w-full px-gutter h-20 bg-background/40 backdrop-blur-md sticky top-0 z-40 border-b border-outline-variant/15">
+<div class="font-headline-lg text-headline-lg font-black tracking-tighter text-on-surface">FANDY AI MARKETING COMMAND</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 font-code-label text-status-label text-uptime-green">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-uptime-green opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-uptime-green"></span>
+</span>
+                    UPTIME: 99.9%
                 </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="tools-container">
-            <i class="fab fa-docker tool-icon" title="Docker"></i>
-            <i class="fab fa-github tool-icon" title="GitHub"></i>
-            <i class="fab fa-node-js tool-icon" title="Node.js"></i>
-            <i class="fab fa-python tool-icon" title="Python"></i>
-            <i class="fab fa-ubuntu tool-icon" title="Ubuntu"></i>
-            <i class="fas fa-cloud tool-icon" title="Cloud Deployment"></i>
-            <i class="fas fa-shield-halved tool-icon" title="Security"></i>
-            <i class="fab fa-openai tool-icon" title="OpenAI"></i>
-            <i class="fas fa-wind tool-icon" title="Windsurf"></i>
-            <i class="fab fa-git-alt tool-icon" title="Git"></i>
-          </div>
-        </div>
-       
-        <div style="background: rgba(0, 0, 0, 0.5); border: 1px solid #00ffff; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
-            <h3 style="color: #00ffff; font-family: 'Courier New', Courier, monospace;">>> ADTECH STRATEGIC INSIGHTS</h3>
-            <div style="text-align: center; margin: 15px 0;">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/euXEfhL0cmE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px; border: 1px solid #333;"></iframe>
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="AdTech Analysis" style="width: 100%; border-radius: 8px; border: 1px solid #333; margin-top: 15px;">
-            </div>
-            <div style="color: #e0e0e0; font-family: Arial, sans-serif; line-height: 1.6; font-size: 0.9em;">
-                <p><strong>Navigating the Digital Advertising Ecosystem 2026</strong></p>
-                <p>This analysis explores the synergies between attribution platforms such as <strong>AppsFlyer</strong> and <strong>Adjust</strong> with high-performance ad networks like <strong>Moloco</strong> and <strong>AppLovin</strong>. The main focus is on optimization <em>Real-Time Bidding</em> (RTB) and cost per acquisition (CPA) efficiency through precise API integration.</p>
-                <p><a href="https://sites.google.com/view/appsflyermolocoandapplovininte/beranda" target="_blank" style="color: #00ffff; text-decoration: none;">[ Read the Full Case Study on Google Sites ]</a></p>
-            </div>
-        </div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-neon-cyan transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-neon-cyan transition-colors" data-icon="settings">settings</span>
+</div>
+</div>
+</div>
+<div class="p-gutter max-w-7xl mx-auto space-y-section-gap">
+<!-- Hero Section: Centralized Profile -->
+<section class="relative h-[600px] flex flex-col items-center justify-center text-center overflow-hidden rounded-xl border border-outline-variant/30">
+<!-- Animated Background Image Container -->
+<div class="absolute inset-0 z-0 overflow-hidden">
+<img alt="Fandy Yoku Hero Background" class="ken-burns-bg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr0xB13N85jTKjEBdD40NLfzPrbpdrd5Zm_42xN5Pdq5v3NFmMXjDrkjPo0lMrl68nu7dWVaZ3G9vnRsoOr2xnfqnNYe_CUncfezs_7Him1i5ztTtoFAtnHKkEE5Yz0gZRUfqWt95Web4ZKmYkxP6GB4YA1IwT1tu0t2TMtxDq9xk4sh8jwwFMEbeepufpUZ352IjxysyApCCXN3ZqMF0AbwXcregiCssaUM1Au-Ts8rqm9j-Wnq0uIzqP9s5KSQYTWa0ZuBc9TNrA"/>
+<!-- 40% Transparent Black Overlay -->
+<div class="absolute inset-0 bg-black/40 z-10"></div>
+</div>
+<div class="relative z-20 space-y-6 px-6">
+<div class="space-y-4">
+<h2 class="font-headline-lg text-5xl md:text-6xl text-white tracking-tight uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] font-black">Fandy Yoku</h2>
+<div class="inline-block px-6 py-2 glass-panel rounded-full border-neon-cyan shadow-lg">
+<span class="font-code-label text-headline-md text-neon-cyan tracking-[0.2em] uppercase">Technical Marketing Engineer</span>
+</div>
+</div>
+<p class="max-w-2xl mx-auto text-white text-lg md:text-xl font-medium leading-relaxed drop-shadow-md">
+                        Architecting the future of advertising through AI Engineering, Cloud DevOps, and Data-Driven Programmatic Strategies.
+                    </p>
+<div class="flex gap-4 justify-center mt-4">
+<div class="px-4 py-2 bg-surface-container-highest/60 backdrop-blur-md rounded border border-outline-variant/30 text-white font-code-label text-sm uppercase tracking-widest">
+                            System Ready
+                        </div>
+<div class="px-4 py-2 bg-neon-cyan/20 backdrop-blur-md rounded border border-neon-cyan/50 text-neon-cyan font-code-label text-sm uppercase tracking-widest">
+                            Sequence Initiated
+                        </div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Interactive Home Menu -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-component-gap">
+<!-- System Status Widget -->
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between border-neon-cyan/20 group hover:border-neon-cyan/50 transition-all duration-500">
+<div>
+<div class="font-code-label text-status-label text-neon-cyan mb-2">SYSTEM STATUS</div>
+<div class="space-y-3 font-code-label text-body-sm">
+<div class="flex justify-between border-b border-outline-variant/10 pb-1">
+<span class="text-on-surface-variant">OS:</span>
+<span class="text-on-surface">Ubuntu 24.04</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/10 pb-1">
+<span class="text-on-surface-variant">ENV:</span>
+<span class="text-on-surface">Production</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/10 pb-1">
+<span class="text-on-surface-variant">RUNTIME:</span>
+<span class="text-uptime-green">Stable</span>
+</div>
+</div>
+</div>
+<div class="mt-6 flex gap-2">
+<div class="h-1 flex-1 bg-uptime-green rounded-full"></div>
+<div class="h-1 flex-1 bg-uptime-green rounded-full"></div>
+<div class="h-1 flex-1 bg-uptime-green rounded-full"></div>
+<div class="h-1 flex-1 bg-surface-variant rounded-full"></div>
+</div>
+</div>
+<!-- Case Study: AI Content Generator -->
+<a class="glass-panel p-6 rounded-xl border-l-4 border-l-electric-purple group hover:scale-[1.02] transition-all duration-300" href="https://github.com/fandiyoku-netizen/ai-content-generator" target="_blank">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-electric-purple text-4xl" data-icon="neurology">neurology</span>
+<span class="font-status-label text-status-label bg-electric-purple/10 text-electric-purple px-2 py-0.5 rounded">LIVE</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2 group-hover:text-neon-cyan transition-colors">AI Content Generator</h3>
+<p class="text-body-sm text-on-surface-variant mb-4">Advanced content orchestration using Gemini 3 Flash &amp; OpenAI API for high-velocity marketing pipelines.</p>
+<div class="font-code-label text-[11px] flex gap-2 text-on-surface-variant/70">
+<span>#AI</span> <span>#Python</span> <span>#Automation</span>
+</div>
+</a>
+<!-- Case Study: Ads Marketing Dashboard -->
+<div class="relative glass-panel p-6 rounded-xl border-l-4 border-l-neon-cyan group hover:scale-[1.02] transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-neon-cyan text-4xl" data-icon="monitoring">monitoring</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2 group-hover:text-neon-cyan transition-colors">Ads Marketing Dashboard</h3>
+<p class="text-body-sm text-on-surface-variant mb-4">Real-time performance visualizer for multi-channel campaign attribution and ROAS tracking.</p>
+<!-- Fallback Layer for Sandbox Environment -->
+<div class="relative w-full aspect-video rounded-lg overflow-hidden border border-outline-variant/30 bg-surface-container-lowest flex flex-col items-center justify-center text-center p-4">
+<div class="absolute inset-0 flex flex-col items-center justify-center z-0 opacity-40">
+<span class="material-symbols-outlined text-6xl text-neon-cyan/20 animate-pulse" data-icon="terminal">terminal</span>
+</div>
+<div class="relative z-10 font-code-label text-[10px] text-neon-cyan uppercase tracking-tighter leading-tight max-w-[200px]">
+                            [ LIVE EMBEDDED AREA: Interactive Ads Dashboard Active on Production ]
+                        </div>
+<iframe class="absolute inset-0 w-full h-full border-none z-20 opacity-0 group-hover:opacity-100 transition-opacity" src="https://adsdasboard1.vercel.app/"></iframe>
+</div>
+<div class="font-code-label text-[11px] flex gap-2 text-on-surface-variant/70 mt-4">
+<span>#AdTech</span> <span>#Vercel</span> <span>#React</span>
+</div>
+<a class="absolute inset-0 z-30" href="https://adsdasboard1.vercel.app/" target="_blank"></a>
+</div>
+<!-- AdTech Insights -->
+<div class="md:col-span-2 glass-panel p-8 rounded-xl border-t border-t-neon-cyan/30 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-9xl" data-icon="hub">hub</span>
+</div>
+<div class="relative z-10 max-w-xl">
+<div class="flex items-center gap-2 text-neon-cyan font-code-label text-code-label mb-4">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+                            STRATEGIC INSIGHTS
+                        </div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Navigating the Ad Ecosystem 2026</h3>
+<p class="text-body-sm text-on-surface-variant mb-6">Optimization of Real-Time Bidding (RTB) and CPA efficiency through precision API integrations between AppsFlyer, Moloco, and AppLovin.</p>
+<!-- Video & Analytics Container - Preserving Structure -->
+<div class="space-y-4 mb-6">
+<div class="aspect-video bg-black rounded-lg overflow-hidden border border-outline-variant/20">
+<!-- Placeholder or existing YouTube frame if present, keeping structure intact -->
+<div class="w-full h-full flex items-center justify-center bg-surface-container-high/40">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant/40" data-icon="play_circle">play_circle</span>
+</div>
+</div>
+<div class="rounded-lg overflow-hidden border border-outline-variant/20 bg-surface-container-high/20 p-2">
+<!-- Analytics Image Placeholder Container -->
+<div class="h-32 w-full flex items-center justify-center text-on-surface-variant/40 font-code-label text-[10px] border border-dashed border-outline-variant/30 uppercase">
+                                    [ INTEGRATED ANALYTICS PIPELINE VISUALIZATION ]
+                                </div>
+</div>
+</div>
+<a class="inline-flex items-center gap-2 px-6 py-3 bg-neon-cyan text-on-primary font-code-label text-code-label font-bold uppercase hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] transition-all" href="https://sites.google.com/view/appsflyermolocoandapplovininte/beranda">
+                            EXECUTE ANALYSIS
+                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Tech Stack Stack -->
+<div class="glass-panel p-6 rounded-xl border-on-tertiary-fixed-variant/20 flex flex-col justify-between">
+<div>
+<div class="font-code-label text-status-label text-uptime-green mb-4">CORE STACK</div>
+<div class="flex flex-wrap gap-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+<span class="material-symbols-outlined text-3xl" data-icon="terminal">terminal</span>
+<span class="material-symbols-outlined text-3xl" data-icon="cloud">cloud</span>
+<span class="material-symbols-outlined text-3xl" data-icon="dns">dns</span>
+<span class="material-symbols-outlined text-3xl" data-icon="database">database</span>
+<span class="material-symbols-outlined text-3xl" data-icon="javascript">javascript</span>
+</div>
+</div>
+<div class="mt-8 font-code-label text-[11px] text-on-surface-variant leading-relaxed">
+                        ENG: Gemini 3 Flash / OpenAI<br/>
+                        ENV: Docker / Ubuntu / GCP
+                    </div>
+</div>
+</section>
+<!-- Detailed Archive Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-8 space-y-6">
+<div class="flex items-center gap-4 mb-4">
+<div class="h-px flex-1 bg-outline-variant/30"></div>
+<h2 class="font-headline-md text-headline-md text-neon-cyan uppercase tracking-widest flex items-center gap-2">
+<span class="text-sm">&gt;&gt;</span> PROFESSIONAL ARCHIVE
+                        </h2>
+</div>
+<div class="space-y-8">
+<div class="relative pl-6 border-l border-neon-cyan/20">
+<div class="absolute w-2 h-2 bg-neon-cyan rounded-full -left-[4.5px] top-2"></div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">PROFESSIONAL EVOLUTION</h4>
+<ul class="text-body-sm text-on-surface-variant space-y-2 list-disc ml-4">
+<li>Bachelor of Theology to Technical Marketing Engineering</li>
+<li>Adapted to global tech algorithm changes</li>
+<li>Continuous learning and skill development</li>
+</ul>
+</div>
+<div class="relative pl-6 border-l border-electric-purple/20">
+<div class="absolute w-2 h-2 bg-electric-purple rounded-full -left-[4.5px] top-2"></div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">TECHNICAL MASTERY</h4>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-body-sm text-on-surface-variant">
+<div class="glass-panel p-4 rounded-lg">
+<div class="text-electric-purple font-code-label text-[11px] mb-1">DEVOPS</div>
+                                    Expertise in Docker, WSL2, and Cloud-native environments (GCP, StackBlitz).
+                                </div>
+<div class="glass-panel p-4 rounded-lg">
+<div class="text-neon-cyan font-code-label text-[11px] mb-1">ADTECH</div>
+                                    Specialist in DSP architecture, RTB logic, and automated bidding strategies.
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 glass-panel p-6 rounded-xl border-outline-variant/20">
+<h3 class="font-headline-md text-headline-md text-electric-purple mb-6 flex items-center gap-2">
+<span class="text-sm">&gt;&gt;</span> REPO DIRECTORY
+                    </h3>
+<div class="space-y-3">
+<a class="block p-4 bg-surface-variant/30 rounded-lg hover:bg-surface-variant/60 transition-colors" href="https://ads-funnel.vercel.app/">
+<div class="font-code-label text-code-label">03. Ads Funnel Analysis (Python)</div>
+</a>
+<a class="block p-4 bg-surface-variant/30 rounded-lg hover:bg-surface-variant/60 transition-colors" href="https://github.com/fandiyoku-netizen/wsl2-docker-optimization-study">
+<div class="font-code-label text-code-label">04. WSL2 &amp; Docker Optimization</div>
+</a>
+<a class="block p-4 bg-surface-variant/30 rounded-lg hover:bg-surface-variant/60 transition-colors" href="https://sites.google.com/view/automated-advertising-dsp-stra/halaman-muka">
+<div class="font-code-label text-code-label">05. Automated DSP Strategy</div>
+</a>
+</div>
+<div class="mt-10 pt-6 border-t border-outline-variant/20">
+<div class="text-status-label font-code-label text-on-surface-variant mb-4 uppercase">AI Neural Engine Status</div>
+<div class="bg-surface-container-lowest p-4 rounded-md font-code-label text-[12px] text-uptime-green">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1.5 h-1.5 bg-uptime-green rounded-full"></span>
+                                READY FOR SEQUENCE
+                            </div>
+<div class="opacity-70">
+                                $ &gt; await command<span class="terminal-cursor"></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Cluster -->
+<footer class="w-full border-t border-outline-variant/20 bg-black/60 backdrop-blur-md mt-section-gap">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter py-8">
+<div class="font-code-label text-code-label text-uptime-green flex items-center gap-4 mb-4 md:mb-0">
+<span>UPTIME: 99.9%</span>
+<span class="text-on-surface-variant/20">|</span>
+<span>OS: UBUNTU 24.04</span>
+<span class="text-on-surface-variant/20">|</span>
+<span>ENV: PRODUCTION</span>
+</div>
+<div class="flex gap-8 font-code-label text-code-label">
+<a class="text-on-surface-variant hover:text-white transition-colors" href="#">Privacy Protocol</a>
+<a class="text-on-surface-variant hover:text-white transition-colors" href="#">Security Logs</a>
+<a class="text-on-surface-variant hover:text-white transition-colors" href="#">API Status</a>
+</div>
+</div>
+</footer>
+</main>
+<script>
+        // Matrix Rain Effect (Cyber Rain)
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
 
-        <div class="cyber-card">
-          <h3 style="margin-top:0; font-size: 14px; color: var(--neon-cyan);">>> AI NEURAL ENGINE</h3>
-          <textarea id="input" rows="3" placeholder="Input neural prompt..."></textarea>
-          <button class="btn-execute" onclick="generate()">Execute Sequence</button>
-          <div class="output-box" id="output">System ready. Awaiting command...</div>
-        </div>
-      </div>
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
 
-      <div class="cyber-card">
-        <h3 style="margin-top:0; font-size: 14px; color: var(--neon-purple);">>> STUDY CASE REPOS</h3>
-        <ul class="repo-list">
-          <li class="repo-item"><a href="https://github.com/fandiyoku-netizen/ai-content-generator" target="_blank">1. AI Content Generator [Live]</a></li>
-          <li class="repo-item"><a href="https://adsdasboard1.vercel.app/" target="_blank" rel="noopener noreferrer">2. Ads Marketing Dashboard</a></li>
-          <li class="repo-item"><a href="https://ads-funnel.vercel.app/" target="_blank" rel="noopener noreferrer">3. Ads Funnel Analysis (Python)</a></li>
-          <li class="repo-item"><a href="https://github.com/fandiyoku-netizen/wsl2-docker-optimization-study" target="_blank">4. WSL2 & Docker Optimization</a></li>
-          <li class="repo-item"><a href="https://sites.google.com/view/automated-advertising-dsp-stra/halaman-muka" target="_blank">5. Automated Advertising DSP Strategy</a></li>
-        </ul>
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$<>/-_=+*^";
+        const fontSize = 14;
+        let columns = Math.floor(width / fontSize);
+        let drops = [];
 
-        <div style="margin-top: 25px; font-size: 12px; color: var(--text-gray);">
-          <strong style="color: var(--neon-purple);">TECH STACK INVOLVED:</strong><br>
-          <span style="margin-left: 8px;">• Engine: Gemini 3 Flash & OpenAI API</span><br>
-          <span style="margin-left: 8px;">• Core: HTML5 / CSS3 / JavaScript</span><br>
-          <span style="margin-left: 8px;">• Backend: Node.js / Serverless</span><br>
-          <span style="margin-left: 8px;">• Env: Docker, Ubuntu, Vercel</span><br>
-          <span style="margin-left: 8px;">• AI Tools: ChatGPT & Windsurf AI</span>
-        </div>
-        
-        <div style="margin-top: 25px; font-size: 12px; color: var(--text-gray);">
-          <strong style="color: var(--neon-purple);">ADVERTISING TOOLS & ATTRIBUTION:</strong><br>
-          <ul style="list-style: none; padding-left: 8px; margin-top: 5px; margin-bottom: 0;">
-            <li style="margin-bottom: 4px;"><strong style="color: var(--neon-purple);">• Ads Tech:</strong> Google, Meta, TikTok Ads</li>
-            <li style="margin-bottom: 4px;"><strong style="color: var(--neon-purple);">• Attribution:</strong> AppsFlyer, Adjust, Kochava</li>
-            <li><strong style="color: var(--neon-purple);">• Inventory:</strong> Moloco, AppLovin, UnityAds</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+        function initDrops() {
+            columns = Math.floor(width / fontSize);
+            drops = [];
+            for (let x = 0; x < columns; x++) {
+                drops[x] = Math.random() * -100; // Randomize start to prevent "curtain" look
+            }
+        }
 
-  <script>
-    async function generate() {
-      const prompt = document.getElementById("input").value;
-      const output = document.getElementById("output");
-      output.innerHTML = "<span style='color:var(--neon-purple)'>PROCESSOR STARTING...</span>";
-      
-      try {
-        const res = await fetch("/api/generate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt, type: "chat" })
+        initDrops();
+
+        function drawMatrix() {
+            // Fading black background to create trail effect
+            ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+            ctx.fillRect(0, 0, width, height);
+
+            // Use dim neon green or transparent cyan
+            ctx.fillStyle = Math.random() > 0.5 ? "rgba(0, 242, 255, 0.3)" : "rgba(57, 255, 20, 0.3)";
+            ctx.font = fontSize + "px JetBrains Mono";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        let matrixInterval = setInterval(drawMatrix, 50);
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initDrops();
         });
-        const data = await res.json();
-        output.innerText = data.result;
-      } catch (err) {
-        output.innerText = "> FATAL ERROR: CONNECTION LOST";
-      }
-    }
-  </script>
-</body>
-</html>
+
+        // Typing Effect Logic
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        function triggerTyping(element) {
+            const span = element.querySelector('.typing-text');
+            if (span) {
+                // To restart animation, we toggle the class
+                element.classList.remove('typing-active');
+                void element.offsetWidth; // Force reflow
+                element.classList.add('typing-active');
+                
+                const textLength = span.textContent.length;
+                span.style.width = '0';
+                span.style.animation = 'none';
+                void span.offsetWidth; // reflow
+                span.style.animation = `typing ${Math.max(0.4, textLength * 0.05)}s steps(${textLength}, end) forwards, blink-caret .75s step-end infinite`;
+            }
+        }
+
+        // Trigger on load for all
+        window.addEventListener('load', () => {
+            navItems.forEach((item, index) => {
+                setTimeout(() => triggerTyping(item), index * 200);
+            });
+        });
+
+        // Trigger on hover
+        navItems.forEach(item => {
+            item.addEventListener('mouseenter', () => triggerTyping(item));
+        });
+
+        // Hover Interaction for Cards
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        function generate() {
+            console.log("AI Neural Engine command processed.");
+        }
+    </script>
+</body></html>
