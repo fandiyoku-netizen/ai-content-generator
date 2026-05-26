@@ -8,7 +8,6 @@
   <style>
     :root {
       --bg-dark: #121417; 
-     
       --card-bg: #1a1d23; 
       --neon-cyan: #00f2ff;
       --neon-purple: #bc13fe;
@@ -26,7 +25,6 @@
       overflow: hidden;
     }
 
-   
     .sidebar {
       width: 280px;
       background: var(--card-bg);
@@ -94,21 +92,52 @@
       flex: 1;
       padding: 25px;
       overflow-y: auto;
-     
       background: linear-gradient(135deg, #121417 0%, #1c1f26 100%);
     }
 
-    .header-bar {
+    .header-container {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       margin-bottom: 30px;
+    }
+
+    .header-left h2 {
+      margin: 0; 
+      letter-spacing: 2px;
     }
 
     .system-log {
       font-family: 'Courier New', monospace;
       font-size: 11px;
       color: var(--terminal-green);
+      margin-top: 5px;
+    }
+
+    /* Top Right Navigation Menu Style */
+    .top-right-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      background: rgba(26, 29, 35, 0.6);
+      padding: 10px;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      max-width: 450px;
+    }
+
+    .top-nav-link {
+      font-size: 11px;
+      color: var(--text-gray);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      text-align: right;
+      line-height: 1.3;
+    }
+
+    .top-nav-link:hover {
+      color: var(--neon-cyan);
     }
 
     .dashboard-grid {
@@ -139,11 +168,32 @@
       color: #e6edf3;
     }
 
+    .archive-section {
+      margin-bottom: 20px;
+    }
+
+    .archive-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .archive-link {
+      color: var(--neon-cyan);
+      text-decoration: none;
+      font-weight: bold;
+      transition: text-shadow 0.2s;
+    }
+
+    .archive-link:hover {
+      text-shadow: 0 0 8px rgba(0, 242, 255, 0.6);
+    }
+
     .tools-container {
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
-      margin-top: 15px;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px dashed #30363d;
     }
 
     .tool-icon {
@@ -172,7 +222,7 @@
       color: white;
       text-decoration: none;
       font-size: 12px;
-      display: block
+      display: block;
     }
 
     textarea {
@@ -213,7 +263,6 @@
 </head>
 <body>
 
-
   <div class="sidebar">
     <div class="profile-box">
       <img src="/fandy-cyber.png" alt="Fandy Yoku" class="profile-img">
@@ -236,49 +285,48 @@
   </div>
 
   <div class="main-panel">
-    <div class="header-bar">
-      <h2 style="margin:0; letter-spacing: 2px;">FANDY AI MARKETING COMMAND</h2>
-      <div class="system-log">Uptime: 99.9% | OS: Ubuntu 24.04 | Env: Production</div>
+    <div class="header-container">
+      <div class="header-left">
+        <h2 style="margin:0; letter-spacing: 2px;">FANDY AI MARKETING COMMAND</h2>
+        <div class="system-log">Uptime: 99.9% | OS: Ubuntu 24.04 | Env: Production</div>
+      </div>
+      
+      <div class="top-right-nav">
+        <a href="#" class="top-nav-link"><i class="fas fa-briefcase" style="font-size: 10px; margin-right: 4px;"></i> Digital Marketing Portfolio</a>
+        <a href="https://sites.google.com/view/appsflyermolocoandapplovininte/beranda" target="_blank" class="top-nav-link"><i class="fas fa-project-diagram" style="font-size: 10px; margin-right: 4px;"></i> AppsFlyer, Moloco, and AppLovin Integration Strategy: Maximizing ROI Through Data-Driven Advertising Ecosystems</a>
+        <a href="mailto:fandiyoku3@gmail.com" class="top-nav-link"><i class="fas fa-envelope" style="font-size: 10px; margin-right: 4px;"></i> Contact</a>
+      </div>
     </div>
 
     <div class="dashboard-grid">
       <div style="display: flex; flex-direction: column; gap: 20px;">
         
         <div class="cyber-card">
-          <h3 style="margin-top:0; font-size: 14px; color: var(--neon-cyan);">>> PROFESSIONAL ARCHIVE</h3>
+          <h3 style="margin-top:0; font-size: 14px; color: var(--neon-cyan);">>> SUMMARY</h3>
           <div class="bio-text">
-            <div style="margin-bottom: 15px;">
-              <span style="color: var(--neon-cyan); margin-right: 8px;">•</span>
-              <strong style="color: var(--neon-cyan);">PROFESSIONAL EVOLUTION:</strong><br>
-              <span style="margin-left: 16px; display: block; margin-top: 4px;">
-                • Bachelor of Theology to Technical Marketing Engineering<br>
-                • Adapted to global tech algorithm changes<br>
-                • Continuous learning and skill development
-              </span>
+            <p style="margin-top: 0; margin-bottom: 20px; text-align: justify; border-left: 2px solid var(--neon-cyan); padding-left: 10px;">
+              A Technical Marketing Engineer with a unique foundational trajectory (Bachelor of Theology to Technical Marketing Engineering), highly adaptive to global tech algorithm shifts through continuous, self-directed learning. Focused on synthesizing Digital Marketing, AI Engineering, and AdsTech to drive data-backed business growth. Proficient in modern growth marketing methodologies and the tech advertising ecosystem, effectively bridging the gap between digital marketing strategies and robust backend infrastructure.
+            </p>
+            
+            <div class="archive-section">
+              <strong style="color: var(--neon-cyan); display: block; margin-bottom: 4px;"><i class="fas fa-ad"></i> 1. Tech Advertising Advancement</strong>
+              The tech advertising landscape is rapidly shifting toward AI-driven automation, stricter data privacy, and programmatic complexity (DSP architecture & RTB logic). Mastering automated bidding strategies across diverse platforms—such as Kayzen, UnityAds, and IronSource—is critical to achieving capital-efficient ad spend at scale.
+              <div style="margin-top: 6px;">
+                <a href="https://adsdasboard1.vercel.app/" target="_blank" class="archive-link">[ Access Live Dashboard Structure: Interactive Ads Dashboard ]</a>
+              </div>
             </div>
             
-            <div style="margin-bottom: 15px;">
-              <span style="color: var(--neon-cyan); margin-right: 8px;">•</span>
-              <strong style="color: var(--neon-cyan);">LEARNING METHODOLOGY:</strong><br>
-              <span style="margin-left: 16px; display: block; margin-top: 4px;">
-                • Global Self-Taught Learner bridging resource gaps<br>
-                • Engaging with international open-source communities<br>
-                • Mastering technical skills through industry-standard documentation<br>
-                • AdTech & Backend Integration: Bridging the gap between Digital Marketing and AI Engineering<br>
-              </span>
+            <div class="archive-section">
+              <strong style="color: var(--neon-cyan); display: block; margin-bottom: 4px;"><i class="fas fa-code-branch"></i> 2. API Integration & AI Web Dashboard Architecture</strong>
+              Architecting AI-powered web environments (built on Node.js, Vercel, and integrated with Gemini Flash & OpenAI APIs) for content automation and predictive analytics. Implementing robust API integrations seamlessly funnels raw marketing data from Mobile Measurement Partners (MMPs) directly into custom analytical dashboards, ensuring real-time attribution tracking and high-fidelity conversion analytics.
             </div>
             
-            <div style="margin-bottom: 15px;">
-              <span style="color: var(--neon-cyan); margin-right: 8px;">•</span>
-              <strong style="color: var(--neon-cyan);">TECHNICAL MASTERY:</strong><br>
-              <span style="margin-left: 16px; display: block; margin-top: 4px;">
-                • Expertise in AI Engineering and Web Architecture<br>
-                • Proficient in DevOps and Cloud Deployment<br>
-                • DevOps & Cloud Deployment: Mastering Docker, WSL2, and cloud-native development environments (GCP, StackBlitz).<br>
-                • AdTech & Programmatic Advertising: Specialist in DSP architecture, RTB logic, and automated bidding strategies (Kayzen, UnityAds, IronSource<br>
-                • Digital Marketing & Social Media Operations: Expert in performance marketing, social media management, and funnel analysis using data-driven insights.<br>
-                • Independent study with real-world application focus
-              </span>
+            <div class="archive-section">
+              <strong style="color: var(--neon-cyan); display: block; margin-bottom: 4px;"><i class="fas fa-rocket"></i> 3. Advanced Growth Marketing & Search Intelligence</strong>
+              Modern growth marketing has evolved beyond traditional SEO into GEO (Generative Engine Optimization) and AEO (Answer Engine Optimization), securing brand visibility across AI-driven search experiences. Leveraging deep-crawl technical auditing via Screaming Frog and simulating GoogleBot behavior to engineer site architectures fully optimized for both LLM crawlers and traditional search engines.
+              <div style="margin-top: 6px;">
+                <a href="https://medium.com/@fandiyoku/cara-melacak-roas-e-commerce-dengan-appsflyer-de00cc15337b" target="_blank" class="archive-link">[ Read Case Study: Cara Melacak ROAS E-Commerce dengan AppsFlyer ]</a>
+              </div>
             </div>
           </div>
           
@@ -296,25 +344,19 @@
           </div>
         </div>
        
-<div style="background: rgba(0, 0, 0, 0.5); border: 1px solid #00ffff; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
-    <h3 style="color: #00ffff; font-family: 'Courier New', Courier, monospace;">>> ADTECH STRATEGIC INSIGHTS</h3>
-    
-   
-    <div style="text-align: center; margin: 15px 0;">
-        
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/euXEfhL0cmE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px; border: 1px solid #333;"></iframe>
-        
-        
-        <img src="https://images.unsplash.com/photo-1551288049-bbda38a5f9a2?w=800" alt="AdTech Analysis" style="width: 100%; border-radius: 8px; border: 1px solid #333; margin-top: 15px;">
-    </div>
+        <div style="background: rgba(0, 0, 0, 0.5); border: 1px solid #00ffff; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+            <h3 style="color: #00ffff; font-family: 'Courier New', Courier, monospace;">>> ADTECH STRATEGIC INSIGHTS</h3>
+            <div style="text-align: center; margin: 15px 0;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/euXEfhL0cmE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px; border: 1px solid #333;"></iframe>
+                <img src="https://images.unsplash.com/photo-1551288049-bbda38a5f9a2?w=800" alt="AdTech Analysis" style="width: 100%; border-radius: 8px; border: 1px solid #333; margin-top: 15px;">
+            </div>
+            <div style="color: #e0e0e0; font-family: Arial, sans-serif; line-height: 1.6; font-size: 0.9em;">
+                <p><strong>Navigating the Digital Advertising Ecosystem 2026</strong></p>
+                <p>This analysis explores the synergies between attribution platforms such as <strong>AppsFlyer</strong> and <strong>Adjust</strong> with high-performance ad networks like <strong>Moloco</strong> and <strong>AppLovin</strong>. The main focus is on optimization <em>Real-Time Bidding</em> (RTB) and cost per acquisition (CPA) efficiency through precise API integration.</p>
+                <p><a href="https://sites.google.com/view/appsflyermolocoandapplovininte/beranda" target="_blank" style="color: #00ffff; text-decoration: none;">[ Read the Full Case Study on Google Sites ]</a></p>
+            </div>
+        </div>
 
-    <!-- WRITING SCRIPT -->
-    <div style="color: #e0e0e0; font-family: Arial, sans-serif; line-height: 1.6; font-size: 0.9em;">
-        <p><strong>Navigating the Digital Advertising Ecosystem 2026</strong></p>
-        <p>This analysis explores the synergies between attribution platforms such as <strong>AppsFlyer</strong> dan <strong>Adjust</strong> with high-performance ad networks like <strong>Moloco</strong> dan <strong>AppLovin</strong>. The main focus is on optimization <em>Real-Time Bidding</em> (RTB) and cost per acquisition (CPA) efficiency through precise API integration.</p>
-        <p><a href="https://sites.google.com/view/appsflyermolocoandapplovininte/beranda" target="_blank" style="color: #00ffff; text-decoration: none;">[ Read the Full Case Study on Google Sites ]</a></p>
-    </div>
-</div>
         <div class="cyber-card">
           <h3 style="margin-top:0; font-size: 14px; color: var(--neon-cyan);">>> AI NEURAL ENGINE</h3>
           <textarea id="input" rows="3" placeholder="Input neural prompt..."></textarea>
@@ -327,8 +369,8 @@
         <h3 style="margin-top:0; font-size: 14px; color: var(--neon-purple);">>> STUDY CASE REPOS</h3>
         <ul class="repo-list">
           <li class="repo-item"><a href="https://github.com/fandiyoku-netizen/ai-content-generator" target="_blank">1. AI Content Generator [Live]</a></li>
-          <li class="repo-item"><a href="https://adsdasboard1.vercel.app/" target="_blank"rel="noopener noreferrer">2. Ads Marketing Dashboard</a></li>
-          <li class="repo-item"><a href="https://ads-funnel.vercel.app/" target="_blank"rel="noopener noreferrer">3. Ads Funnel Analysis (Python)</a></li>
+          <li class="repo-item"><a href="https://adsdasboard1.vercel.app/" target="_blank" rel="noopener noreferrer">2. Ads Marketing Dashboard</a></li>
+          <li class="repo-item"><a href="https://ads-funnel.vercel.app/" target="_blank" rel="noopener noreferrer">3. Ads Funnel Analysis (Python)</a></li>
           <li class="repo-item"><a href="https://github.com/fandiyoku-netizen/wsl2-docker-optimization-study" target="_blank">4. WSL2 & Docker Optimization</a></li>
           <li class="repo-item"><a href="https://sites.google.com/view/automated-advertising-dsp-stra/halaman-muka" target="_blank">5. Automated Advertising DSP Strategy</a></li>
         </ul>
@@ -341,13 +383,16 @@
           <span style="margin-left: 8px;">• Env: Docker, Ubuntu, Vercel</span><br>
           <span style="margin-left: 8px;">• AI Tools: ChatGPT & Windsurf AI</span>
         </div>
-       <div style="margin-top: 25px; font-size: 12px; color: var(--text-gray);">
+        
+        <div style="margin-top: 25px; font-size: 12px; color: var(--text-gray);">
           <strong style="color: var(--neon-purple);">ADVERTISING TOOLS & ATTRIBUTION:</strong><br>
-         <li style="margin-top: 10px;"><strong style="color: var(--neon-purple);">• Ads Tech:</strong> Google, Meta, TikTok Ads</li>
-        <li><strong style="color: var(--neon-purple);">• Attribution:</strong> AppsFlyer, Adjust, Kochava</li>
-        <li><strong style="color: var(--neon-purple);">• Inventory:</strong> Moloco, AppLovin, UnityAds</li>
-    </ul>
-</div>
+          <ul style="list-style: none; padding-left: 8px; margin-top: 5px; margin-bottom: 0;">
+            <li style="margin-bottom: 4px;"><strong style="color: var(--neon-purple);">• Ads Tech:</strong> Google, Meta, TikTok Ads</li>
+            <li style="margin-bottom: 4px;"><strong style="color: var(--neon-purple);">• Attribution:</strong> AppsFlyer, Adjust, Kochava</li>
+            <li><strong style="color: var(--neon-purple);">• Inventory:</strong> Moloco, AppLovin, UnityAds</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -372,5 +417,3 @@
   </script>
 </body>
 </html>
-
-            
