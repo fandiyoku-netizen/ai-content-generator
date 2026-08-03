@@ -8,7 +8,6 @@
 </head>
 <body class="bg-gradient-to-br from-sky-50 via-white to-sky-100 text-slate-800 p-4 md:p-8 font-sans min-h-screen">
 
-  <!-- Header -->
   <header class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-md border border-sky-100 rounded-2xl p-4 mb-8 shadow-sm">
     <div class="flex items-center gap-3">
       <h1 class="font-bold tracking-tight text-slate-900 text-lg">⚙️ AI COMMAND CENTER</h1>
@@ -17,37 +16,23 @@
   </header>
 
   <main class="max-w-7xl mx-auto space-y-8">
-    
-    <!-- Hero -->
     <section class="bg-gradient-to-r from-sky-600 to-cyan-500 rounded-2xl p-8 text-white shadow-xl">
       <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-mono uppercase">Technical Marketing Engineering</span>
       <h2 class="text-3xl md:text-4xl font-black mt-3">Fandy Alfando Yoku</h2>
       <p class="text-sky-100 text-sm mt-2 max-w-xl">Streamlining content workflows, automated marketing pipelines, and data-driven AdTech architectures.</p>
     </section>
 
-    <!-- Main Grid -->
     <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      
       <!-- Automation Panel -->
       <div class="bg-white/80 backdrop-blur-md border border-sky-100 rounded-2xl p-6 shadow-sm space-y-4">
         <h3 class="font-bold text-slate-900 flex items-center gap-2">▶️ Automation Triggers</h3>
         <p class="text-xs text-slate-500">Jalankan instruksi marketing otomatis secara instan.</p>
-        
         <div class="space-y-3">
-          <button onclick="triggerTask('Buatkan 5 variasi ad copy untuk Meta Ads dengan tone profesional')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">
-            ✨ Bulk Ad Copy Generator
-          </button>
-          <button onclick="triggerTask('Buatkan ringkasan insight dari data campaign dan berikan rekomendasi optimasi')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">
-            📊 Campaign Insight Analyzer
-          </button>
-          <button onclick="triggerTask('Audit SEO: berikan checklist meta title, description, dan keyword untuk landing page marketing')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">
-            🔍 SEO Meta & Tags Audit
-          </button>
+          <button onclick="triggerTask('Buatkan 5 variasi ad copy untuk Meta Ads dengan tone profesional')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">✨ Bulk Ad Copy Generator</button>
+          <button onclick="triggerTask('Buatkan ringkasan insight dari data campaign dan berikan rekomendasi optimasi')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">📊 Campaign Insight Analyzer</button>
+          <button onclick="triggerTask('Audit SEO: berikan checklist meta title, description, dan keyword untuk landing page marketing')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">🔍 SEO Meta & Tags Audit</button>
         </div>
-
-        <div id="status-box" class="p-3 bg-sky-50 border border-sky-100 rounded-xl text-xs font-mono text-sky-800">
-          [System Ready] Menunggu perintah eksekusi...
-        </div>
+        <div id="status-box" class="p-3 bg-sky-50 border border-sky-100 rounded-xl text-xs font-mono text-sky-800">[System Ready] Menunggu perintah eksekusi...</div>
       </div>
 
       <!-- Chatbot -->
@@ -65,9 +50,7 @@
 
         <form id="chat-form" class="p-3 border-t border-sky-100 bg-sky-50/30 flex gap-2">
           <input type="text" id="chat-input" placeholder="Ketik perintah untuk AI..." class="flex-1 bg-white border border-sky-200 rounded-xl px-4 py-2 text-sm text-slate-800 focus:outline-none focus:border-sky-500 shadow-sm" autocomplete="off" />
-          <button type="submit" class="bg-sky-600 hover:bg-sky-500 text-white px-5 py-2 rounded-xl text-sm font-semibold transition shadow-md shadow-sky-500/20">
-            Kirim
-          </button>
+          <button type="submit" class="bg-sky-600 hover:bg-sky-500 text-white px-5 py-2 rounded-xl text-sm font-semibold transition shadow-md shadow-sky-500/20">Kirim</button>
         </form>
       </div>
     </section>
@@ -98,11 +81,7 @@
         });
 
         const data = await res.json();
-        
-        if (!res.ok) {
-          throw new Error(data.error || 'Gagal memanggil AI');
-        }
-
+        if (!res.ok) throw new Error(data.error || 'Gagal memanggil AI');
         return data.reply;
       } catch (err) {
         console.error(err);
@@ -121,7 +100,7 @@
 
       const loading = document.createElement('div');
       loading.className = 'bg-sky-50 border border-sky-100 text-slate-500 p-3 rounded-xl rounded-tl-none max-w-[85%] text-xs';
-      loading.innerText = 'Sedang berpikir...';
+      loading.innerText = 'Sedang berpthinking...';
       chatContainer.appendChild(loading);
       chatContainer.scrollTop = chatContainer.scrollHeight;
 
@@ -136,7 +115,6 @@
     async function triggerTask(prompt) {
       statusBox.innerHTML = `[Executing...] ${prompt.substring(0, 50)}...`;
       statusBox.className = 'p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs font-mono text-amber-800';
-
       addMessage(prompt, true);
 
       const reply = await callAI(prompt);
