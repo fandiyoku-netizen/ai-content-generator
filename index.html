@@ -1,455 +1,109 @@
-@@ -110,27 +110,9 @@
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
-        }
-
-        .pulse-border {
-            position: relative;
-        }
-        .pulse-border::after {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border: 2px solid #00F2FF;
-            border-radius: inherit;
-            animation: pulse 2s infinite;
-            pointer-events: none;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.1); opacity: 0; }
-        }
-
-        .glass-panel {
-            background: rgba(18, 20, 23, 0.6);
-            backdrop-filter: blur(10px);
-            background: rgba(18, 20, 23, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-@@ -147,20 +129,7 @@
-            50% { opacity: 0; }
-        }
-
-        /* Ken Burns Effect */
-        @keyframes ken-burns {
-            0% { transform: scale(1) translate(0, 0); }
-            50% { transform: scale(1.1) translate(-1%, -1%); }
-            100% { transform: scale(1) translate(0, 0); }
-        }
-
-        .ken-burns-bg {
-            animation: ken-burns 10s ease-in-out infinite;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Cyber Rain Canvas Styles */
-        #matrix-canvas {
-            position: fixed;
-            top: 0;
-@@ -181,7 +150,7 @@
-        }
-
-        .typing-active .typing-text {
-            animation: typing 1s steps(20, end), blink-caret .75s step-end infinite;
-            animation: typing 1s steps(20, end) forwards, blink-caret .75s step-end infinite;
-        }
-
-        @keyframes typing {
-@@ -193,6 +162,30 @@
-            from, to { border-color: transparent }
-            50% { border-color: #00F2FF; }
-        }
-
-        /* Pulsing Notification */
-        @keyframes pulse-bell {
-            0% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(0, 242, 255, 0)); }
-            50% { transform: scale(1.2); filter: drop-shadow(0 0 8px rgba(0, 242, 255, 0.8)); }
-            100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(0, 242, 255, 0)); }
-        }
-        .pulsing-bell {
-            animation: pulse-bell 2s infinite ease-in-out;
-            color: #00F2FF !important;
-        }
-
-        /* Profile Background Animation */
-        @keyframes ken-burns {
-            0% { transform: scale(1) translate(0, 0); }
-            50% { transform: scale(1.05) translate(-1%, -1%); }
-            100% { transform: scale(1) translate(0, 0); }
-        }
-        .ken-burns-bg {
-            animation: ken-burns 15s ease-in-out infinite;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Command Center</title>
+    <!-- Memanggil Tailwind CSS agar desain langsung rapi -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black text-on-background font-body-lg selection:bg-neon-cyan/30 overflow-x-hidden">
-@@ -260,19 +253,20 @@ <h1 class="font-headline-lg-mobile text-headline-lg-mobile font-black tracking-t
-                    UPTIME: 99.9%
+<body class="bg-gradient-to-br from-sky-50 via-white to-sky-100 text-slate-800 p-4 md:p-8 font-sans min-h-screen">
+
+    <!-- Header -->
+    <header class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-md border border-sky-100 rounded-2xl p-4 mb-8 shadow-sm">
+        <div class="flex items-center gap-3">
+            <h1 class="font-bold tracking-tight text-slate-900 text-lg">⚙️ AI COMMAND CENTER</h1>
+        </div>
+        <span class="bg-sky-100 text-sky-700 px-3 py-1 rounded-full text-xs font-mono font-semibold">UPTIME: 99.9%</span>
+    </header>
+
+    <main class="max-w-7xl mx-auto space-y-8">
+        
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-sky-600 to-cyan-500 rounded-2xl p-8 text-white shadow-xl">
+            <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-mono uppercase">Technical Marketing Engineering</span>
+            <h2 class="text-3xl md:text-4xl font-black mt-3">Fandy Alfando Yoku</h2>
+            <p class="text-sky-100 text-sm mt-2 max-w-xl">Streamlining content workflows, automated marketing pipelines, and data-driven AdTech architectures.</p>
+        </section>
+
+        <!-- Automation & Chatbot Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Automation Panel -->
+            <div class="bg-white/80 backdrop-blur-md border border-sky-100 rounded-2xl p-6 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900 flex items-center gap-2">▶️ Automation Triggers</h3>
+                <p class="text-xs text-slate-500">Jalankan instruksi marketing otomatis secara instan.</p>
+                
+                <div class="space-y-3">
+                    <button onclick="triggerTask('Bulk Ad Copy Generator')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">✨ Bulk Ad Copy Generator</button>
+                    <button onclick="triggerTask('Sync Data Source Pipeline')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">📊 Sync Data Source Pipeline</button>
+                    <button onclick="triggerTask('SEO Keyword Audit')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">🔍 SEO Meta & Tags Audit</button>
                 </div>
-<div class="flex gap-3">
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-neon-cyan transition-colors" data-icon="notifications">notifications</span>
-<a class="flex items-center justify-center" href="https://wa.me/6282190912115" target="_blank">
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer pulsing-bell transition-colors" data-icon="notifications">notifications</span>
-</a>
-<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-neon-cyan transition-colors" data-icon="settings">settings</span>
-</div>
-</div>
-</div>
-<div class="p-gutter max-w-7xl mx-auto space-y-section-gap">
-<div class="p-gutter max-w-7xl mx-auto space-y-component-gap">
-<!-- Hero Section: Centralized Profile -->
-<section class="relative h-[600px] flex flex-col items-center justify-center text-center overflow-hidden rounded-xl border border-outline-variant/30">
-<!-- Animated Background Image Container -->
-<!-- Profile Image Preservation -->
-<div class="absolute inset-0 z-0 overflow-hidden">
-<img alt="Fandy Yoku Hero Background" class="ken-burns-bg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr0xB13N85jTKjEBdD40NLfzPrbpdrd5Zm_42xN5Pdq5v3NFmMXjDrkjPo0lMrl68nu7dWVaZ3G9vnRsoOr2xnfqnNYe_CUncfezs_7Him1i5ztTtoFAtnHKkEE5Yz0gZRUfqWt95Web4ZKmYkxP6GB4YA1IwT1tu0t2TMtxDq9xk4sh8jwwFMEbeepufpUZ352IjxysyApCCXN3ZqMF0AbwXcregiCssaUM1Au-Ts8rqm9j-Wnq0uIzqP9s5KSQYTWa0ZuBc9TNrA"/>
-<!-- 40% Transparent Black Overlay -->
-<div class="absolute inset-0 bg-black/40 z-10"></div>
-<img alt="Fandy Yoku Hero Background" class="ken-burns-bg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5mUDNX4t9tzlon9Ub84Rv_wqAx712xldrnRJ4Sdhfafdkv6WRaMHjX5X_5k7U-_luamAhgPjlm4MaDNiW_3AP6w4LeFfU2LBbQV8wIopoi6tX4rn2B-wjHjwvNRqlXxTWCXbWZs1RC6Q6HHreDkZu5D92uMtzQTW4rjglWKxsnAexQ0xUrR55tqnzlg5DukdUMw9a5YRMDvj8DNlH2ZqPbYS0-HCL2lYQxd6nlZM_7KyaJpaC2HHnD-Pu5hu3eqMKy5usNaFgavLc"/>
-<div class="absolute inset-0 bg-black/50 z-10"></div>
-</div>
-<div class="relative z-20 space-y-6 px-6">
-<div class="space-y-4">
-@@ -294,6 +288,43 @@ <h2 class="font-headline-lg text-5xl md:text-6xl text-white tracking-tight upper
-</div>
-</div>
-</section>
-<!-- Summary Reorganization (Unified Profile Focus) -->
-<section class="grid grid-cols-1 md:grid-cols-2 gap-component-gap">
-<div class="glass-panel p-6 rounded-xl border-l-4 border-l-neon-cyan">
-<h3 class="font-headline-md text-headline-md text-neon-cyan uppercase tracking-widest mb-4 flex items-center gap-2">
-<span class="material-symbols-outlined text-lg">history_edu</span> PROFESSIONAL EVOLUTION
-                    </h3>
-<ul class="text-body-sm text-on-surface-variant space-y-3 list-none">
-<li class="flex items-start gap-2">
-<span class="text-neon-cyan mt-1">•</span>
-<span>Bachelor of Theology to Technical Marketing Engineering</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="text-neon-cyan mt-1">•</span>
-<span>Adapted to global tech algorithm changes and dynamic AdTech landscapes</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="text-neon-cyan mt-1">•</span>
-<span>Continuous learning and rapid skill acquisition in AI content orchestration</span>
-</li>
-</ul>
-</div>
-<div class="glass-panel p-6 rounded-xl border-l-4 border-l-electric-purple">
-<h3 class="font-headline-md text-headline-md text-electric-purple uppercase tracking-widest mb-4 flex items-center gap-2">
-<span class="material-symbols-outlined text-lg">verified</span> TECHNICAL MASTERY
-                    </h3>
-<div class="space-y-4">
-<div>
-<div class="text-electric-purple font-code-label text-[11px] mb-1 font-bold">DEVOPS &amp; CLOUD</div>
-<p class="text-body-sm text-on-surface-variant">Expertise in Docker orchestration, WSL2 performance tuning, and Cloud-native environments (GCP, StackBlitz).</p>
-</div>
-<div>
-<div class="text-neon-cyan font-code-label text-[11px] mb-1 font-bold">ADTECH ARCHITECTURE</div>
-<p class="text-body-sm text-on-surface-variant">Specialist in DSP architecture, Real-Time Bidding (RTB) logic, and programmatic marketing pipelines.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Bento Grid: Interactive Home Menu -->
-<section class="grid grid-cols-1 md:grid-cols-3 gap-component-gap">
-<!-- System Status Widget -->
-@@ -340,140 +371,91 @@ <h3 class="font-headline-md text-headline-md mb-2 group-hover:text-neon-cyan tra
-<span class="material-symbols-outlined text-neon-cyan text-4xl" data-icon="monitoring">monitoring</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-2 group-hover:text-neon-cyan transition-colors">Ads Marketing Dashboard</h3>
-<p class="text-body-sm text-on-surface-variant mb-4">Real-time performance visualizer for multi-channel campaign attribution and ROAS tracking.</p>
-<p class="text-body-sm text-on-surface-variant mb-4">Real-time performance visualizer for multi-channel campaign attribution.</p>
-<!-- Fallback Layer for Sandbox Environment -->
-<div class="relative w-full aspect-video rounded-lg overflow-hidden border border-outline-variant/30 bg-surface-container-lowest flex flex-col items-center justify-center text-center p-4">
-<div class="absolute inset-0 flex flex-col items-center justify-center z-0 opacity-40">
-<span class="material-symbols-outlined text-6xl text-neon-cyan/20 animate-pulse" data-icon="terminal">terminal</span>
-</div>
-<div class="relative z-10 font-code-label text-[10px] text-neon-cyan uppercase tracking-tighter leading-tight max-w-[200px]">
-                            [ LIVE EMBEDDED AREA: Interactive Ads Dashboard Active on Production ]
-                            [ LIVE DASHBOARD ACTIVE ]
-                        </div>
-<iframe class="absolute inset-0 w-full h-full border-none z-20 opacity-0 group-hover:opacity-100 transition-opacity" src="https://adsdasboard1.vercel.app/"></iframe>
-</div>
-<div class="font-code-label text-[11px] flex gap-2 text-on-surface-variant/70 mt-4">
-<span>#AdTech</span> <span>#Vercel</span> <span>#React</span>
-</div>
-<a class="absolute inset-0 z-30" href="https://adsdasboard1.vercel.app/" target="_blank"></a>
-</div>
-<!-- AdTech Insights -->
-<div class="md:col-span-2 glass-panel p-8 rounded-xl border-t border-t-neon-cyan/30 relative overflow-hidden group">
-<!-- Strategic Insights Row -->
-<div class="md:col-span-3 glass-panel p-8 rounded-xl border-t border-t-neon-cyan/30 relative overflow-hidden group">
-<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-<span class="material-symbols-outlined text-9xl" data-icon="hub">hub</span>
-</div>
-<div class="relative z-10 max-w-xl">
-<div class="relative z-10 flex flex-col md:flex-row gap-8 items-center">
-<div class="flex-1">
-<div class="flex items-center gap-2 text-neon-cyan font-code-label text-code-label mb-4">
-<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
-                            STRATEGIC INSIGHTS
-                        </div>
-                                STRATEGIC INSIGHTS
-                            </div>
-<h3 class="font-headline-lg text-headline-lg mb-4">Navigating the Ad Ecosystem 2026</h3>
-<p class="text-body-sm text-on-surface-variant mb-6">Optimization of Real-Time Bidding (RTB) and CPA efficiency through precision API integrations between AppsFlyer, Moloco, and AppLovin.</p>
-<!-- Video & Analytics Container - Preserving Structure -->
-<div class="space-y-4 mb-6">
-<div class="aspect-video bg-black rounded-lg overflow-hidden border border-outline-variant/20">
-<!-- Placeholder or existing YouTube frame if present, keeping structure intact -->
-<div class="w-full h-full flex items-center justify-center bg-surface-container-high/40">
-<span class="material-symbols-outlined text-4xl text-on-surface-variant/40" data-icon="play_circle">play_circle</span>
-</div>
-</div>
-<div class="rounded-lg overflow-hidden border border-outline-variant/20 bg-surface-container-high/20 p-2">
-<!-- Analytics Image Placeholder Container -->
-<div class="h-32 w-full flex items-center justify-center text-on-surface-variant/40 font-code-label text-[10px] border border-dashed border-outline-variant/30 uppercase">
-                                    [ INTEGRATED ANALYTICS PIPELINE VISUALIZATION ]
-                                </div>
-</div>
-</div>
-<p class="text-body-sm text-on-surface-variant mb-6">Optimization of RTB and CPA efficiency through precision API integrations between AppsFlyer, Moloco, and AppLovin.</p>
-<a class="inline-flex items-center gap-2 px-6 py-3 bg-neon-cyan text-on-primary font-code-label text-code-label font-bold uppercase hover:shadow-[0_0_20px_rgba(0,242,255,0.4)] transition-all" href="https://sites.google.com/view/appsflyermolocoandapplovininte/beranda">
-                            EXECUTE ANALYSIS
-                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
-                                EXECUTE ANALYSIS
-                                <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
-</a>
-</div>
-</div>
-<!-- Tech Stack Stack -->
-<div class="glass-panel p-6 rounded-xl border-on-tertiary-fixed-variant/20 flex flex-col justify-between">
-<div>
-<div class="font-code-label text-status-label text-uptime-green mb-4">CORE STACK</div>
-<div class="flex flex-wrap gap-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-<span class="material-symbols-outlined text-3xl" data-icon="terminal">terminal</span>
-<span class="material-symbols-outlined text-3xl" data-icon="cloud">cloud</span>
-<span class="material-symbols-outlined text-3xl" data-icon="dns">dns</span>
-<span class="material-symbols-outlined text-3xl" data-icon="database">database</span>
-<span class="material-symbols-outlined text-3xl" data-icon="javascript">javascript</span>
-<div class="w-full md:w-1/3 aspect-video bg-black rounded-lg overflow-hidden border border-outline-variant/20 flex items-center justify-center relative">
-<span class="material-symbols-outlined text-4xl text-on-surface-variant/40" data-icon="play_circle">play_circle</span>
-<div class="absolute bottom-2 right-2 px-2 py-1 bg-black/60 rounded text-[10px] text-neon-cyan font-code-label uppercase">Video Feed</div>
-</div>
-</div>
-<div class="mt-8 font-code-label text-[11px] text-on-surface-variant leading-relaxed">
-                        ENG: Gemini 3 Flash / OpenAI<br/>
-                        ENV: Docker / Ubuntu / GCP
+
+                <div id="status-box" class="p-3 bg-sky-50 border border-sky-100 rounded-xl text-xs font-mono text-sky-800">
+                    [System Ready] Menunggu perintah eksekusi...
+                </div>
+            </div>
+
+            <!-- Chatbot Assistant -->
+            <div class="lg:col-span-2 bg-white/80 backdrop-blur-md border border-sky-100 rounded-2xl flex flex-col h-[420px] overflow-hidden shadow-sm">
+                <div class="p-4 border-b border-sky-100 bg-sky-50/30 flex items-center justify-between">
+                    <h3 class="font-bold text-slate-900 flex items-center gap-2 text-sm">🤖 AI Assistant Chatbot</h3>
+                    <span class="text-xs font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Online</span>
+                </div>
+
+                <!-- Chat Messages -->
+                <div id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-3 text-sm">
+                    <div class="bg-sky-50 border border-sky-100 text-slate-700 p-3 rounded-xl rounded-tl-none max-w-[85%]">
+                        Halo! Ada tugas marketing atau skrip automasi yang ingin dibantu kerjakan hari ini?
                     </div>
-</div>
-</section>
-<!-- Detailed Archive Section -->
-<!-- Repository Section -->
-<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-<div class="md:col-span-8 space-y-6">
-<div class="flex items-center gap-4 mb-4">
-<div class="h-px flex-1 bg-outline-variant/30"></div>
-<h2 class="font-headline-md text-headline-md text-neon-cyan uppercase tracking-widest flex items-center gap-2">
-<span class="text-sm">&gt;&gt;</span> PROFESSIONAL ARCHIVE
-                        </h2>
-</div>
-<div class="space-y-8">
-<div class="relative pl-6 border-l border-neon-cyan/20">
-<div class="absolute w-2 h-2 bg-neon-cyan rounded-full -left-[4.5px] top-2"></div>
-<h4 class="font-headline-md text-headline-md text-on-surface mb-2">PROFESSIONAL EVOLUTION</h4>
-<ul class="text-body-sm text-on-surface-variant space-y-2 list-disc ml-4">
-<li>Bachelor of Theology to Technical Marketing Engineering</li>
-<li>Adapted to global tech algorithm changes</li>
-<li>Continuous learning and skill development</li>
-</ul>
-</div>
-<div class="relative pl-6 border-l border-electric-purple/20">
-<div class="absolute w-2 h-2 bg-electric-purple rounded-full -left-[4.5px] top-2"></div>
-<h4 class="font-headline-md text-headline-md text-on-surface mb-2">TECHNICAL MASTERY</h4>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-body-sm text-on-surface-variant">
-<div class="glass-panel p-4 rounded-lg">
-<div class="text-electric-purple font-code-label text-[11px] mb-1">DEVOPS</div>
-                                    Expertise in Docker, WSL2, and Cloud-native environments (GCP, StackBlitz).
-                                </div>
-<div class="glass-panel p-4 rounded-lg">
-<div class="text-neon-cyan font-code-label text-[11px] mb-1">ADTECH</div>
-                                    Specialist in DSP architecture, RTB logic, and automated bidding strategies.
-                                </div>
-</div>
-</div>
-</div>
-</div>
-<div class="md:col-span-4 glass-panel p-6 rounded-xl border-outline-variant/20">
-<h3 class="font-headline-md text-headline-md text-electric-purple mb-6 flex items-center gap-2">
-<span class="text-sm">&gt;&gt;</span> REPO DIRECTORY
-                    </h3>
-<div class="space-y-3">
-<a class="block p-4 bg-surface-variant/30 rounded-lg hover:bg-surface-variant/60 transition-colors" href="https://ads-funnel.vercel.app/">
-<div class="font-code-label text-code-label">03. Ads Funnel Analysis (Python)</div>
-<div class="md:col-span-8 glass-panel p-6 rounded-xl">
-<h2 class="font-headline-md text-headline-md text-neon-cyan uppercase tracking-widest mb-6 flex items-center gap-4">
-<span class="text-sm">&gt;&gt;</span> PROFESSIONAL DIRECTORY
-                    </h2>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-<a class="block p-4 bg-surface-variant/30 rounded-lg hover:bg-surface-variant/60 transition-colors border border-outline-variant/10" href="https://ads-funnel.vercel.app/">
-<div class="font-code-label text-code-label mb-1">03. Ads Funnel Analysis (Python)</div>
-<div class="text-[11px] text-on-surface-variant">Data modeling for funnel performance</div>
-</a>
-<a class="block p-4 bg-surface-variant/30 rounded-lg hover:bg-surface-variant/60 transition-colors" href="https://github.com/fandiyoku-netizen/wsl2-docker-optimization-study">
-<div class="font-code-label text-code-label">04. WSL2 &amp; Docker Optimization</div>
-<a class="block p-4 bg-surface-variant/30 rounded-lg hover:bg-surface-variant/60 transition-colors border border-outline-variant/10" href="https://github.com/fandiyoku-netizen/wsl2-docker-optimization-study">
-<div class="font-code-label text-code-label mb-1">04. WSL2 &amp; Docker Optimization</div>
-<div class="text-[11px] text-on-surface-variant">DevOps environment configuration guide</div>
-</a>
-<a class="block p-4 bg-surface-variant/30 rounded-lg hover:bg-surface-variant/60 transition-colors" href="https://sites.google.com/view/automated-advertising-dsp-stra/halaman-muka">
-<div class="font-code-label text-code-label">05. Automated DSP Strategy</div>
-<a class="block p-4 bg-surface-variant/30 rounded-lg hover:bg-surface-variant/60 transition-colors border border-outline-variant/10" href="https://sites.google.com/view/automated-advertising-dsp-stra/halaman-muka">
-<div class="font-code-label text-code-label mb-1">05. Automated DSP Strategy</div>
-<div class="text-[11px] text-on-surface-variant">Architectural patterns for RTB</div>
-</a>
-</div>
-<div class="mt-10 pt-6 border-t border-outline-variant/20">
-</div>
-<div class="md:col-span-4 glass-panel p-6 rounded-xl border-outline-variant/20">
-<div class="text-status-label font-code-label text-on-surface-variant mb-4 uppercase">AI Neural Engine Status</div>
-<div class="bg-surface-container-lowest p-4 rounded-md font-code-label text-[12px] text-uptime-green">
-<div class="flex items-center gap-2 mb-2">
-<span class="w-1.5 h-1.5 bg-uptime-green rounded-full"></span>
-                                READY FOR SEQUENCE
-                            </div>
-<span class="w-1.5 h-1.5 bg-uptime-green rounded-full shadow-[0_0_5px_#33ff33]"></span>
-                            READY FOR SEQUENCE
-                        </div>
-<div class="opacity-70">
-                                $ &gt; await command<span class="terminal-cursor"></span>
-                            $ &gt; await command<span class="terminal-cursor"></span>
-</div>
-</div>
-<div class="mt-8">
-<div class="font-code-label text-status-label text-uptime-green mb-4 uppercase">CORE STACK</div>
-<div class="flex flex-wrap gap-3 opacity-70">
-<span class="material-symbols-outlined text-2xl" data-icon="terminal">terminal</span>
-<span class="material-symbols-outlined text-2xl" data-icon="cloud">cloud</span>
-<span class="material-symbols-outlined text-2xl" data-icon="dns">dns</span>
-<span class="material-symbols-outlined text-2xl" data-icon="database">database</span>
-<span class="material-symbols-outlined text-2xl" data-icon="javascript">javascript</span>
-</div>
-</div>
-</div>
-</section>
-</div>
-<!-- Footer Cluster -->
-<footer class="w-full border-t border-outline-variant/20 bg-black/60 backdrop-blur-md mt-section-gap">
-<footer class="w-full border-t border-outline-variant/20 bg-black/80 backdrop-blur-md mt-section-gap">
-<div class="flex flex-col md:flex-row justify-between items-center px-gutter py-8">
-<div class="font-code-label text-code-label text-uptime-green flex items-center gap-4 mb-4 md:mb-0">
-<span>UPTIME: 99.9%</span>
-@@ -488,6 +470,12 @@ <h3 class="font-headline-md text-headline-md text-electric-purple mb-6 flex item
-<a class="text-on-surface-variant hover:text-white transition-colors" href="#">API Status</a>
-</div>
-</div>
-<!-- Terminal Style Status Line -->
-<div class="w-full bg-black py-3 px-gutter border-t border-outline-variant/10 flex justify-center">
-<div class="font-code-label text-[12px] text-[#33ff33] tracking-[0.3em] uppercase animate-pulse">
-                    SYSTEM READY. SEQUENCE INITIATED
                 </div>
-</div>
-</footer>
-</main>
-<script>
-@@ -507,19 +495,18 @@ <h3 class="font-headline-md text-headline-md text-electric-purple mb-6 flex item
-            columns = Math.floor(width / fontSize);
-            drops = [];
-            for (let x = 0; x < columns; x++) {
-                drops[x] = Math.random() * -100; // Randomize start to prevent "curtain" look
-                drops[x] = Math.random() * -100;
-            }
+
+                <!-- Chat Input -->
+                <form id="chat-form" class="p-3 border-t border-sky-100 bg-sky-50/30 flex gap-2" onsubmit="sendMessage(event)">
+                    <input type="text" id="chat-input" placeholder="Ketik perintah untuk AI..." class="flex-1 bg-white border border-sky-200 rounded-xl px-4 py-2 text-sm text-slate-800 focus:outline-none focus:border-sky-500 shadow-sm" autocomplete="off" />
+                    <button type="submit" class="bg-sky-600 hover:bg-sky-500 text-white px-5 py-2 rounded-xl text-sm font-semibold transition shadow-md shadow-sky-500/20">Kirim</button>
+                </form>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Skrip Interaksi -->
+    <script>
+        function triggerTask(taskName) {
+            const statusBox = document.getElementById('status-box');
+            statusBox.innerHTML = `[Executing...] Menjalankan ${taskName}...`;
+            setTimeout(() => {
+                statusBox.innerHTML = `[Success] ${taskName} berhasil diselesaikan!`;
+            }, 1500);
         }
 
-        initDrops();
+        function sendMessage(event) {
+            event.preventDefault(); // Mencegah halaman reload
+            const input = document.getElementById('chat-input');
+            const container = document.getElementById('chat-container');
+            const userText = input.value.trim();
+            
+            if(!userText) return;
 
-        function drawMatrix() {
-            // Fading black background to create trail effect
-            ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-            ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-            ctx.fillRect(0, 0, width, height);
+            // Tambahkan pesan user
+            container.innerHTML += `
+                <div class="bg-sky-600 text-white p-3 rounded-xl rounded-tr-none max-w-[85%] ml-auto mt-3">
+                    ${userText}
+                </div>`;
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
 
-            // Use dim neon green or transparent cyan
-            ctx.fillStyle = Math.random() > 0.5 ? "rgba(0, 242, 255, 0.3)" : "rgba(57, 255, 20, 0.3)";
-            // Faint cyan rain as requested
-            ctx.fillStyle = "rgba(0, 242, 255, 0.12)";
-            ctx.font = fontSize + "px JetBrains Mono";
-
-            for (let i = 0; i < drops.length; i++) {
-@@ -533,58 +520,53 @@ <h3 class="font-headline-md text-headline-md text-electric-purple mb-6 flex item
-            }
-        }
-
-        let matrixInterval = setInterval(drawMatrix, 50);
-        setInterval(drawMatrix, 50);
-
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            initDrops();
-        });
-
-        // Typing Effect Logic
-        // Typing Effect Logic for Sidebar Nav
-        const navItems = document.querySelectorAll('.nav-item');
-
-        function triggerTyping(element) {
-            const span = element.querySelector('.typing-text');
-            if (span) {
-                // To restart animation, we toggle the class
-                element.classList.remove('typing-active');
-                void element.offsetWidth; // Force reflow
-                void element.offsetWidth; // force reflow
-                element.classList.add('typing-active');
-
-                const textLength = span.textContent.length;
-                span.style.width = '0';
-                span.style.animation = 'none';
-                void span.offsetWidth; // reflow
-                void span.offsetWidth; 
-                span.style.animation = `typing ${Math.max(0.4, textLength * 0.05)}s steps(${textLength}, end) forwards, blink-caret .75s step-end infinite`;
-            }
-        }
-
-        // Trigger on load for all
-        window.addEventListener('load', () => {
-            navItems.forEach((item, index) => {
-                setTimeout(() => triggerTyping(item), index * 200);
-                setTimeout(() => triggerTyping(item), index * 250);
-            });
-        });
-
-        // Trigger on hover
-        navItems.forEach(item => {
-            item.addEventListener('mouseenter', () => triggerTyping(item));
-        });
-
-        // Hover Interaction for Cards
-        // Interaction for Glass Panels (Mouse tracking)
-        document.querySelectorAll('.glass-panel').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-                card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(0, 242, 255, 0.08) 0%, rgba(18, 20, 23, 0.7) 60%)`;
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.background = `rgba(18, 20, 23, 0.7)`;
-            });
-        });
-
-        function generate() {
-            console.log("AI Neural Engine command processed.");
+            // Simulasi balasan AI
+            setTimeout(() => {
+                container.innerHTML += `
+                    <div class="bg-sky-50 border border-sky-100 text-slate-700 p-3 rounded-xl rounded-tl-none max-w-[85%] mt-3">
+                        Perintah "${userText}" sedang diproses melalui sistem backend Vercel.
+                    </div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 1000);
         }
     </script>
-</body></html> 
+</body>
+</html>
