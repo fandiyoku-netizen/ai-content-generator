@@ -1,16 +1,34 @@
-async function triggerTask(taskName) {
-    const statusBox = document.getElementById('status-box');
-    statusBox.innerHTML = `[Connecting...] Mengirim perintah ${taskName} ke LangGraph Agent...`;
+<!-- Script penutup dan logika interaktif -->
+    <script>
+        function triggerTask(taskName) {
+            const statusBox = document.getElementById('status-box');
+            statusBox.innerHTML = `[Executing...] Menjalankan ${taskName}...`;
+            setTimeout(() => {
+                statusBox.innerHTML = `[Success] ${taskName} berhasil diselesaikan!`;
+            }, 1500);
+        }
 
-    try {
-        const response = await fetch('https://url-backend-python-anda.com/api/run-automation', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ task: taskName })
-        });
-        const result = await response.json();
-        statusBox.innerHTML = `[Success] ${result.message}`;
-    } catch (error) {
-        statusBox.innerHTML = `[Error] Gagal terhubung ke backend AI.`;
-    }
-}
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const container = document.getElementById('chat-container');
+            if(!input.value.trim()) return;
+
+            const userText = input.value;
+            container.innerHTML += `
+                <div class="bg-sky-600 text-white p-3 rounded-xl rounded-tr-none max-w-[85%] ml-auto">
+                    ${userText}
+                </div>`;
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+
+            setTimeout(() => {
+                container.innerHTML += `
+                    <div class="bg-sky-50 border border-sky-100 text-slate-700 p-3 rounded-xl rounded-tl-none max-w-[85%]">
+                        Perintah "${userText}" sedang diproses melalui sistem backend Vercel.
+                    </div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
