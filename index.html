@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Content Generator Command Center | Fandy Yoku</title>
-  <!-- Menggunakan Tailwind CSS untuk Tampilan Modern -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -26,24 +25,26 @@
       <!-- Panel Input -->
       <div class="space-y-6">
         <div>
-          <label for="apiKey" class="block text-sm font-medium text-slate-300">Gemini API Key:</label>
+          <div class="flex justify-between items-center">
+            <label for="apiKey" class="block text-sm font-medium text-slate-300">Gemini API Key:</label>
+            <span id="savedBadge" class="text-xs text-emerald-400 hidden font-semibold">✓ Tersimpan Otomatis</span>
+          </div>
           <input type="password" id="apiKey" placeholder="Masukkan API Key Gemini Kamu..." 
             class="w-full mt-2 p-4 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 placeholder:text-slate-600 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none transition duration-150">
-          <p class="text-xs text-slate-500 mt-1">Gunakan API Key yang Valid.</p>
+          <p class="text-xs text-slate-500 mt-1">API Key tersimpan otomatis di browser kamu, tidak perlu diisi ulang.</p>
         </div>
 
         <div>
           <label for="modelSelect" class="block text-sm font-medium text-slate-300">Pilih Model Gemini:</label>
           <select id="modelSelect" class="w-full mt-2 p-4 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none transition duration-150 cursor-pointer">
-            <option value="gemini-1.5-flash">gemini-1.5-flash (Rekomendasi Utama, Cepat & Hemat)</option>
-            <option value="gemini-1.5-pro">gemini-1.5-pro (Lebih Pintar)</option>
-            <option value="gemini-pro">gemini-pro (Klasik)</option>
+            <option value="gemini-1.5-flash">gemini-1.5-flash (Cepat & Hemat)</option>
+            <option value="gemini-1.5-pro">gemini-1.5-pro (Lebih Cerdas)</option>
           </select>
         </div>
 
         <div>
           <label for="prompt" class="block text-sm font-medium text-slate-300">Prompt / Pesan:</label>
-          <textarea id="prompt" rows="5" placeholder="Tulis instruksi konten di sini (misal: 'Buatkan ide konten marketing untuk produk AI baru')" 
+          <textarea id="prompt" rows="5" placeholder="Tulis instruksi konten di sini..." 
             class="w-full mt-2 p-4 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 placeholder:text-slate-600 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none transition duration-150 resize-none"></textarea>
         </div>
 
@@ -62,18 +63,46 @@
   </div>
 
   <script>
+    // --- OPTIONAL: JIKA INGIN HARDCODE API KEY SECARA PERMANEN ---
+    // Masukkan API Key kamu di antara tanda petik di bawah ini jika ingin langsung tertanam:
+    const HARDCODED_API_KEY = ""; 
+
+    // Muat API Key otomatis dari penyimpanan lokal saat halaman dibuka
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedKey = localStorage.getItem("gemini_api_key") || HARDCODED_API_KEY;
+      if (savedKey) {
+        document.getElementById("apiKey").value = savedKey;
+        document.getElementById("savedBadge").classList.remove("hidden");
+      }
+    });
+
+    // Simpan otomatis setiap kali pengguna mengetik di kolom API Key
+    document.getElementById("apiKey").addEventListener("input", (e) => {
+      const key = e.target.value.trim();
+      if (key) {
+        localStorage.setItem("gemini_api_key", key);
+        document.getElementById("savedBadge").classList.remove("hidden");
+      } else {
+        localStorage.removeItem("gemini_api_key");
+        document.getElementById("savedBadge").classList.add("hidden");
+      }
+    });
+
     async function generateContent() {
-      const apiKey = document.getElementById('apiKey').value.trim();
+      const apiKeyInput = document.getElementById('apiKey').value.trim();
+      const apiKey = apiKeyInput || HARDCODED_API_KEY;
       const selectedModel = document.getElementById('modelSelect').value;
       const prompt = document.getElementById('prompt').value.trim();
       const resultDiv = document.getElementById('result');
       const buttonText = document.getElementById('buttonText');
       const loader = document.getElementById('loader');
 
-      if (!apiKey) { alert('Silakan masukkan Gemini API Key yang valid!'); return; }
+      if (!apiKey) { alert('Silakan masukkan Gemini API Key terlebih dahulu!'); return; }
       if (!prompt) { alert('Prompt tidak boleh kosong!'); return; }
 
-      // Reset hasil dan mulai pemrosesan
+      // Simpan ke localStorage
+      localStorage.setItem("gemini_api_key", apiKey);
+
       resultDiv.innerText = 'Sedang memproses... ⏳';
       resultDiv.classList.remove('text-red-400');
       buttonText.classList.add('hidden');
@@ -90,7 +119,6 @@
 
         const data = await response.json();
         
-        // Hentikan pemrosesan
         buttonText.classList.remove('hidden');
         loader.classList.add('hidden');
 
@@ -101,14 +129,13 @@
           resultDiv.innerText = 'Error API: ' + data.error.message;
         } else {
           resultDiv.classList.add('text-red-400');
-          resultDiv.innerText = 'Tidak ada respons dari AI atau format respons tidak dikenal.';
+          resultDiv.innerText = 'Tidak ada respons dari AI.';
         }
       } catch (err) {
-        // Hentikan pemrosesan
         buttonText.classList.remove('hidden');
         loader.classList.add('hidden');
         resultDiv.classList.add('text-red-400');
-        resultDiv.innerText = 'Terjadi kesalahan koneksi ke server Google. Pastikan API Key dan koneksi internet kamu valid.';
+        resultDiv.innerText = 'Terjadi kesalahan koneksi: ' + err.message;
       }
     }
   </script>
