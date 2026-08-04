@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ 
+    const model = genAI.getGenerativeModel({
       model: 'gemini-2.5-flash',
       systemInstruction: 'Kamu adalah AI Assistant spesialis Technical Marketing Engineering dan AdTech. Jawab dalam Bahasa Indonesia secara terstruktur dan profesional.'
     });
