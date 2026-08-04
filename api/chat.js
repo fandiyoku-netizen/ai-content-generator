@@ -1,39 +1,33 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
-module.exports = async (req, res) => {
-  if (req.method === 'POST') {
-    const user_msg = req.body.message;
+export default async function handler(req, res) {
+  // Hanya izinkan method POST
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-    if (!user_msg) {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    return res.status(500).json({ error: 'GEMINI_API_KEY belum diatur di Vercel Environment Variables' });
+  }
+
+  try {
+    const { message } = req.body || {};
+    if (!message) {
       return res.status(400).json({ error: 'Pesan tidak boleh kosong' });
     }
 
-    const geminiApiKey = process.env.GEMINI_API_KEY;
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ 
+      model: 'gemini-2.5-flash',
+      systemInstruction: 'Kamu adalah AI Assistant spesialis Technical Marketing Engineering dan AdTech. Jawab dalam Bahasa Indonesia secara terstruktur dan profesional.'
+    });
 
-    if (!geminiApiKey || geminiApiKey === 'PASTE_GEMINI_API_KEY_DI_SINI') {
-      return res.status(400).json({ error: 'Gemini API Key belum dimasukkan di lingkungan Vercel!' });
-    }
+    const result = await model.generateContent(message);
+    const responseText = result.response.text();
 
-    const genAI = new GoogleGenerativeAI(geminiApiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
-
-    const systemInstruction = "Kamu adalah AI Assistant spesialis Technical Marketing Engineering dan AdTech. Bantu pengguna menyusun ad copy, menganalisis data iklan, strategi optimasi campaign, dan checklist SEO. Berikan respon yang terstruktur, jelas, dan lugas dalam Bahasa Indonesia.";
-
-    try {
-      const result = await model.generateContent({
-        contents: [{ role: 'user', parts: [{ text: systemInstruction + "\nUser: " + user_msg }] }],
-        generationConfig: { temperature: 0.7 },
-      });
-
-      const response = await result.response;
-      const reply = response.text();
-
-      return res.status(200).json({ reply });
-    } catch (error) {
-      console.error("Error calling Gemini API:", error);
-      return res.status(500).json({ error: `Terjadi kesalahan saat memanggil Gemini API: ${error.message}` });
-    }
-  } else {
-    return res.status(405).json({ error: 'Metode tidak diizinkan' });
+    return res.status(200).json({ reply: responseText });
+  } catch (err) {
+    return res.status(500).json({ error: err.message || 'Internal Server Error' });
   }
-};
+}
