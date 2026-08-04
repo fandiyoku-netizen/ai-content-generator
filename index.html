@@ -7,12 +7,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-br from-sky-50 via-white to-sky-100 text-slate-800 p-4 md:p-8 font-sans min-h-screen">
-
   <header class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-md border border-sky-100 rounded-2xl p-4 mb-8 shadow-sm">
     <div class="flex items-center gap-3">
-      <h1 class="font-bold tracking-tight text-slate-900 text-lg">⚙️ AI COMMAND CENTER</h1>
+      <h1 class="font-bold tracking-tight text-slate-900 text-lg">⚙️ AI COMMAND CENTER (GEMINI POWERED)</h1>
     </div>
-    <span class="bg-sky-100 text-sky-700 px-3 py-1 rounded-full text-xs font-mono font-semibold">UPTIME: 99.9%</span>
+    <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-mono font-semibold">ENGINE: GEMINI 2.5 FLASH</span>
   </header>
 
   <main class="max-w-7xl mx-auto space-y-8">
@@ -23,33 +22,31 @@
     </section>
 
     <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <!-- Automation Panel -->
       <div class="bg-white/80 backdrop-blur-md border border-sky-100 rounded-2xl p-6 shadow-sm space-y-4">
         <h3 class="font-bold text-slate-900 flex items-center gap-2">▶️ Automation Triggers</h3>
         <p class="text-xs text-slate-500">Jalankan instruksi marketing otomatis secara instan.</p>
         <div class="space-y-3">
-          <button onclick="triggerTask('Buatkan 5 variasi ad copy untuk Meta Ads dengan tone profesional')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">✨ Bulk Ad Copy Generator</button>
-          <button onclick="triggerTask('Buatkan ringkasan insight dari data campaign dan berikan rekomendasi optimasi')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">📊 Campaign Insight Analyzer</button>
-          <button onclick="triggerTask('Audit SEO: berikan checklist meta title, description, dan keyword untuk landing page marketing')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">🔍 SEO Meta & Tags Audit</button>
+          <button onclick="triggerTask('Buatkan 5 variasi ad copy untuk Meta Ads dengan tone profesional & catchy')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">✨ Bulk Ad Copy Generator</button>
+          <button onclick="triggerTask('Buatkan ringkasan insight dari data campaign marketing dan berikan rekomendasi optimasi CPA & CTR')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">📊 Campaign Insight Analyzer</button>
+          <button onclick="triggerTask('Audit SEO: berikan checklist meta title, description, dan target keyword untuk landing page SaaS/AdTech')" class="w-full text-left p-3 bg-sky-50/50 hover:bg-sky-50 border border-sky-100 rounded-xl transition text-sm font-medium text-slate-700">🔍 SEO Meta & Tags Audit</button>
         </div>
         <div id="status-box" class="p-3 bg-sky-50 border border-sky-100 rounded-xl text-xs font-mono text-sky-800">[System Ready] Menunggu perintah eksekusi...</div>
       </div>
 
-      <!-- Chatbot -->
       <div class="lg:col-span-2 bg-white/80 backdrop-blur-md border border-sky-100 rounded-2xl flex flex-col h-[480px] overflow-hidden shadow-sm">
         <div class="p-4 border-b border-sky-100 bg-sky-50/30 flex items-center justify-between">
-          <h3 class="font-bold text-slate-900 flex items-center gap-2 text-sm">🤖 AI Assistant Chatbot</h3>
-          <span class="text-xs font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Online</span>
+          <h3 class="font-bold text-slate-900 flex items-center gap-2 text-sm">🤖 Gemini Marketing Assistant</h3>
+          <span class="text-xs font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Connected</span>
         </div>
 
         <div id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-3 text-sm">
           <div class="bg-sky-50 border border-sky-100 text-slate-700 p-3 rounded-xl rounded-tl-none max-w-[85%]">
-            Halo! Saya AI Assistant untuk Growth Marketing & AdTech. Ada yang bisa saya bantu hari ini?
+            Halo Fandy! Saya Gemini AI Assistant untuk Technical Marketing & AdTech. Ada workflow atau ad copy yang ingin diproses hari ini?
           </div>
         </div>
 
         <form id="chat-form" class="p-3 border-t border-sky-100 bg-sky-50/30 flex gap-2">
-          <input type="text" id="chat-input" placeholder="Ketik perintah untuk AI..." class="flex-1 bg-white border border-sky-200 rounded-xl px-4 py-2 text-sm text-slate-800 focus:outline-none focus:border-sky-500 shadow-sm" autocomplete="off" />
+          <input type="text" id="chat-input" placeholder="Ketik perintah untuk Gemini AI..." class="flex-1 bg-white border border-sky-200 rounded-xl px-4 py-2 text-sm text-slate-800 focus:outline-none focus:border-sky-500 shadow-sm" autocomplete="off" />
           <button type="submit" class="bg-sky-600 hover:bg-sky-500 text-white px-5 py-2 rounded-xl text-sm font-semibold transition shadow-md shadow-sky-500/20">Kirim</button>
         </form>
       </div>
@@ -66,7 +63,7 @@
       const div = document.createElement('div');
       div.className = isUser
         ? 'bg-sky-600 text-white p-3 rounded-xl rounded-tr-none max-w-[85%] ml-auto'
-        : 'bg-sky-50 border border-sky-100 text-slate-700 p-3 rounded-xl rounded-tl-none max-w-[85%]';
+        : 'bg-sky-50 border border-sky-100 text-slate-700 p-3 rounded-xl rounded-tl-none max-w-[85%] whitespace-pre-line';
       div.innerText = text;
       chatContainer.appendChild(div);
       chatContainer.scrollTop = chatContainer.scrollHeight;
@@ -79,13 +76,12 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message })
         });
-
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Gagal memanggil AI');
+        if (!res.ok) throw new Error(data.error || 'Gagal merespons');
         return data.reply;
       } catch (err) {
         console.error(err);
-        return 'Maaf, terjadi kesalahan: ' + err.message;
+        return 'Terjadi masalah: ' + err.message;
       }
     }
 
@@ -100,7 +96,7 @@
 
       const loading = document.createElement('div');
       loading.className = 'bg-sky-50 border border-sky-100 text-slate-500 p-3 rounded-xl rounded-tl-none max-w-[85%] text-xs';
-      loading.innerText = 'Sedang berpthinking...';
+      loading.innerText = 'Gemini sedang berpikir...';
       chatContainer.appendChild(loading);
       chatContainer.scrollTop = chatContainer.scrollHeight;
 
@@ -113,14 +109,14 @@
     });
 
     async function triggerTask(prompt) {
-      statusBox.innerHTML = `[Executing...] ${prompt.substring(0, 50)}...`;
+      statusBox.innerHTML = `[Executing...] ${prompt.substring(0, 45)}...`;
       statusBox.className = 'p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs font-mono text-amber-800';
       addMessage(prompt, true);
 
       const reply = await callAI(prompt);
       addMessage(reply);
 
-      statusBox.innerHTML = `[Success] Task selesai dijalankan!`;
+      statusBox.innerHTML = `[Success] Task berhasil diproses!`;
       statusBox.className = 'p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs font-mono text-emerald-800';
     }
   </script>

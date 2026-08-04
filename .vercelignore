@@ -1,3 +1,7 @@
 node_modules/
 .git/
-.vercel/
+.gitignore
+.env
+.DS_Store
+# Jangan mengabaikan folder api/
+!api/
