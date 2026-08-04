@@ -1,120 +1,35 @@
-const express = require("express");
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const cors = require("cors");
-
-const dotenv = require("dotenv");
-
-const OpenAI = require("openai");
-
-
-
-dotenv.config();
-
-
-// Check if OpenAI API key is available
-if (!process.env.OPENAI_API_KEY) {
-  console.error("ERROR: OPENAI_API_KEY environment variable is not set");
-  process.exit(1);
-}
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
-
-app.use(cors());
-
 app.use(express.json());
+app.use(express.static(__dirname));
 
-app.use(express.static("public"));
-
-// Health check endpoint
-app.get("/api/health", (req, res) => {
-  res.status(200).json({
-    status: "healthy",
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-    message: "API is running correctly"
-  });
-});
-
-const openai = new OpenAI({
-
-  apiKey: process.env.OPENAI_API_KEY,
-
-});
-
-
-
-app.post("/generate", async (req, res) => {
+app.post('/api/chat', async (req, res) => {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) return res.status(500).json({ error: 'GEMINI_API_KEY belum dikonfigurasi di Cloud Run' });
 
   try {
+    const { message } = req.body || {};
+    if (!message) return res.status(400).json({ error: 'Pesan tidak boleh kosong' });
 
-    const { prompt, type } = req.body;
-
-
-    if (!prompt || !type) {
-      return res.status(400).json({ error: "Prompt and type are required" });
-    }
-
-
-    let systemPrompt = "";
-
-
-
-    if (type === "caption") {
-
-      systemPrompt = "Buat caption Instagram yang menarik + hashtag.";
-
-    } else if (type === "artikel") {
-
-      systemPrompt = "Tulis artikel singkat yang informatif.";
-
-    } else {
-      return res.status(400).json({ error: "Invalid type. Use: caption, artikel, or chat" });
-    }
-
-
-
-
-    const response = await openai.chat.completions.create({
-
-      model: "gpt-4.1-mini",
-
-      messages: [
-
-        { role: "system", content: systemPrompt },
-
-        { role: "user", content: prompt },
-
-      ],
-
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ 
+      model: 'gemini-1.5-flash',
+      systemInstruction: 'Kamu adalah AI Assistant spesialis Technical Marketing Engineering dan AdTech.'
     });
-
-
-
-    res.json({
-
-      result: response.choices[0].message.content,
-
-    });
-
-  } catch (error) {
-
-    console.error(error);
-
-    res.status(500).json({ error: "Terjadi error" });
-
+    
+    const result = await model.generateContent(message);
+    return res.json({ reply: result.response.text() });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
   }
-
 });
 
-
-
-const PORT = process.env.PORT || 3000;
-
-
-
-app.listen(PORT, () => {
-
-  console.log("Server jalan di port " + PORT);
-
-});
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => console.log(`Server GCP Cloud Run aktif di port ${PORT}`));
