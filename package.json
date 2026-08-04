@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "build": "echo 'Static build ready'"
+  },
   "dependencies": {
     "@google/generative-ai": "^0.21.0"
   }
