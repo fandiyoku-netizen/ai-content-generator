@@ -1,7 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export default async function handler(req, res) {
-  // Hanya izinkan method POST
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -28,6 +27,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ reply: responseText });
   } catch (err) {
+    console.error('Error calling Gemini API:', err);
     return res.status(500).json({ error: err.message || 'Internal Server Error' });
   }
 }
